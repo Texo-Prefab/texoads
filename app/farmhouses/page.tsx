@@ -75,7 +75,7 @@ export default function FarmHouses() {
       if (response.ok) {
         setSuccess(true);
         setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
-        setTimeout(() => setSuccess(false), 5000); // Hide message after 5 seconds
+        setTimeout(() => setSuccess(false), 5000); 
       } else {
         alert('Failed to send the form. Please try again.');
       }
