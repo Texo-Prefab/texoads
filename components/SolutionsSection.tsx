@@ -29,10 +29,11 @@ const products = [
   },
   {
     id: 4,
-    title: "Farmhouse",
-    description: "Standalone homes built for farmland and open plots.",
-    image: "/products/Farmhouses.png",
+    title: "Prefab Homes",
+    description: "Factory-built homes assembled on-site quickly.",
+    image: "/products/Prefab-Homes.png",
   },
+  
   {
     id: 5,
     title: "Barn House",
@@ -47,10 +48,11 @@ const products = [
   },
   {
     id: 7,
-    title: "Prefab Homes",
-    description: "Factory-built homes assembled on-site quickly.",
-    image: "/products/Prefab-Homes.png",
+    title: "Farmhouse",
+    description: "Standalone homes built for farmland and open plots.",
+    image: "/products/Farmhouses.png",
   },
+  
 ];
 
 export default function SolutionsSection() {
@@ -153,9 +155,9 @@ export default function SolutionsSection() {
           className="inline-block"
         >
           <p className={`${inter.className} text-center`}>
-            Modern farm houses starting at{" "}
+            Modern prefab products starting at{" "}
             <span className="bg-linear-to-r from-[#886c46] to-[#d7a661] bg-clip-text text-transparent font-bold text-2xl">
-              ₹<CountUp start={0} end={2.5} decimals={1} duration={1.6} />K
+              <CountUp start={0} end={2.5} decimals={1} duration={1.6} />K/sq.ft
             </span>
           </p>
         </motion.div>

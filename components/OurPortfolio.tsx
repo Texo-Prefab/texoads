@@ -15,46 +15,34 @@ const inter = Inter({ subsets: ["latin"] });
 
 const PORTFOLIO = [
   {
-    image: "/products/portfolio-1.jpg",
-    name: "Ravi Kumar",
-    location: "Banjara Hills, Hyderabad",
+    image: "/products/potfolio-1.jpg",
+    name: "Gajwel",
     rating: 5,
-    project: "3BHK Interior Renovation",
   },
   {
     image: "/products/portfolio-2.jpg",
-    name: "Anjali Sharma",
-    location: "Whitefield, Bengaluru",
+    name: "Kuntloor",
     rating: 4.5,
-    project: "Modular Kitchen & Living",
   },
   {
     image: "/products/portfolio-3.jpg",
-    name: "Mohd. Irfan",
-    location: "Tolichowki, Hyderabad",
+    name: "Medchal",
     rating: 5,
-    project: "Custom Furniture Setup",
   },
   {
-    image: "/products/potfolio-4.jpg",
-    name: "Suresh Reddy",
-    location: "Gachibowli, Hyderabad",
+    image: "/products/portfolio-4.jpg",
+    name: "Nizamabad",
     rating: 4.8,
-    project: "Turnkey Apartment Project",
   },
   {
     image: "/products/portfolio-5.jpeg",
-    name: "Neha Verma",
-    location: "Kondapur, Hyderabad",
+    name: "Ameenpur",
     rating: 4.7,
-    project: "Bedroom & Wardrobe Design",
   },
   {
     image: "/products/Wooden House.jpg",
-    name: "Arjun Patel",
-    location: "Madhapur, Hyderabad",
+    name: "Banglore",
     rating: 5,
-    project: "Complete Home Interiors",
   },
 ];
 
@@ -154,7 +142,7 @@ export default function OurPortfolio() {
         >
           <Image
             src={item.image}
-            alt={item.project}
+            alt={item.name}
             fill
             className="object-cover"
           />
@@ -178,17 +166,11 @@ export default function OurPortfolio() {
   "
 >
 
-          <p className="text-sm text-white/80 mb-1">
-            {item.project}
-          </p>
 
           <h3 className="text-xl font-semibold text-white">
             {item.name}
           </h3>
 
-          <p className="text-white/70 text-sm mb-4">
-            {item.location}
-          </p>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">

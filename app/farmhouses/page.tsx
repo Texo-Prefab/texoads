@@ -5,9 +5,9 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import OurPortfolio from '@/components/OurPortfolio';
 import SolutionsSection from '@/components/SolutionsSection';
-import { Contact, Move, Palette, Plug, Zap } from 'lucide-react';
+import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
-import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, MessageCircle, X } from 'lucide-react';
+import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
@@ -91,18 +91,18 @@ export default function FarmHouses() {
   const faqs = [
     {
       id: 1,
-      question: "How long does the prefab installation take?",
-      answer: "Typically, our prefab homes are installed on-site within 2-4 weeks, depending on the project complexity and size. This is significantly faster than traditional construction, which can take 6-12 months."
+      question: "Can I customize my Farmhouse ?",
+      answer: "Absolutely! Texo Prefab World Specializes in tailored solutions. From layout and finishes, we work with you to create a Farmhouse that meets your exact requirements, ensuring a comfortable, durable, and aesthetically elevated living space for luxurious weekend getaways or full-time residence."
     },
     {
       id: 2,
-      question: "Are prefab homes as durable as traditional construction?",
-      answer: "Yes, absolutely. Our prefab homes are manufactured in controlled factory conditions using the highest quality materials. They often exceed the durability standards of traditionally built homes due to precision engineering and quality control."
+      question: "What amenities can I expect in a Farm House?",
+      answer: "At Texo Prefab World, our Farm Houses come equipped with essential features such as pre-installed electrical systems, thermal insulation, climate control, soundproofing, and premium flooring. Additional options include designer interiors, expansive decks, smart home features, modular kitchens, and premium bath fittings to enhance lifestyle and comfort."
     },
     {
       id: 3,
-      question: "Can I customize the design of my prefab home?",
-      answer: "Completely! We offer extensive customization options including layouts, finishes, colors, and interior designs. Our design team works closely with you to create a home that matches your vision perfectly."
+      question: "How do I maintain a Farm House?",
+      answer: "Farm Houses from Texo Prefab World are built with low-maintenance, high-quality materials. Routine upkeep includes inspecting electrical fittings, checking HVAC systems, and ensuring the structural integrity of walls and flooring. Our structures are designed for longevity, offering a hassle-free and refined living experience."
     },
     {
       id: 4,
@@ -111,8 +111,8 @@ export default function FarmHouses() {
     },
     {
       id: 5,
-      question: "Do prefab homes come with warranty coverage?",
-      answer: "Yes, all our prefab homes come with comprehensive warranty coverage including structural, manufacturing defects, and workmanship guarantees. We stand behind our quality."
+      question: "Are Farm Houses eco-friendly?",
+      answer: "Sustainability is a core value at Texo Prefab World. Our Farm Houses are designed with eco-friendly materials and energy-efficient systems. Features like PUF insulated walls, LED lighting, rainwater harvesting, and solar integration make them a luxurious yet environmentally responsible choice."
     },
     {
       id: 6,
@@ -124,45 +124,39 @@ export default function FarmHouses() {
   const reviews = [
     {
       id: 1,
-      name: "Rajesh Kumar",
-      title: "Project Manager",
+      name: "Murali Krishna",
       rating: 5,
-      text: "Exceptional quality and faster delivery. Texo Prefab delivered our project weeks ahead of schedule without compromising on quality. Highly recommended!",
+      text: "I have worked with Mr. Saif sir closely on my requirements. He was patient enough to consider all of them and provided me a beautiful plan. He was also considered the issues of transporting it to our location and built the entire container home onsite. ",
     },
     {
-      id: 2,
-      name: "Priya Singh",
-      title: "Farm Owner",
+      id: 6,
+      name: "Saurav Mishra",
       rating: 5,
-      text: "Outstanding service from consultation to installation. The team was professional, transparent, and delivered exactly what we envisioned. Best investment!",
+      text: "I recently explored Texo Prefab World’s services, Their expertise in designing and constructing container houses, offices, and other prefab structures is evident in the quality of their products.The materials used are durable and eco-friendly, aligning perfectly with modern sustainability needs",
     },
     {
       id: 3,
-      name: "Amit Patel",
-      title: "Real Estate Developer",
+      name: "Bharath G.N",
       rating: 4,
-      text: "Great prefab solutions with excellent customization options. The modular design saved us significant costs. Looking forward to working on more projects.",
+      text: "Fantastic ideas for a new world ofhomes",
     },
     {
       id: 4,
-      name: "Sneha Desai",
-      title: "Interior Designer",
+      name: "Shiva Krishna",
       rating: 5,
-      text: "Texo Prefab's attention to detail is remarkable. They understood our design vision perfectly and executed it flawlessly. Five stars!",
+      text: "They are committed and excellent service and on time delivery.",
     },
     {
       id: 5,
       name: "Vikram Reddy",
-      title: "Property Investor",
       rating: 5,
       text: "Fast, efficient, and reliable. The quality of construction is premium. Texo Prefab sets new standards in the prefab industry.",
     },
     {
-      id: 6,
-      name: "Anjali Verma",
-      title: "Resort Owner",
+      id: 2,
+      name: "Lakshmi Vide",
       rating: 4,
-      text: "Excellent modular solutions for hospitality projects. Quick installation and sturdy structures. Highly satisfied with the overall experience.",
+      text: "Very supportive and user friendly. Clear in taking the specifications and while delivering the product",
     },
   ];
 
@@ -378,13 +372,22 @@ const processSteps = [
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-8 px-4"
+                className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
               >
-                <div className="text-5xl mb-4">🎉</div>
-                <h4 className="text-white text-xl font-semibold mb-2">Thank You!</h4>
-                <p className="text-white/80 text-center text-sm leading-relaxed">
-                  Your request has been received. Our team will contact you shortly.
+                <h3 className="text-white text-2xl font-bold text-center">
+                  Thank you, <span className="text-[#d7a661]">{heroFormData.name}</span>!
+                </h3>
+                <p className="text-white/90 text-center text-sm font-semibold">
+                  Your Consult Awaits.
                 </p>
+                <div className="space-y-3 w-full">
+                  <p className="text-white/80 text-center text-xs leading-relaxed">
+                    Choose a time now or talk to a concierge on <span className="font-semibold">WhatsApp</span>
+                  </p>
+                  <p className="text-white/70 text-center text-xs italic">
+                    We reply in &lt; 15 Minutes (Mon-Sat, 10am-7pm IST)
+                  </p>
+                </div>
               </motion.div>
             ) : (
               <form onSubmit={(e) => handleFormSubmit(e, heroFormData, setHeroFormLoading, setHeroFormSuccess, setHeroFormData)} className={`${inter.className} space-y-3`}>
@@ -899,17 +902,34 @@ const processSteps = [
         </div>
   <div className="marquee flex gap-16 px-6">
     {[
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
-      
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
-      "/hero.png",
+      "/clients/int-1.webp",
+      "/clients/int-2.png",
+      "/clients/int-3.png",
+      "/clients/int-4.png",
+      "/clients/int-6.png",
+      "/clients/int-16.webp",
+      "/clients/int-18.png",
+      "/clients/int-19.png",
+      "/clients/int-11.avif",
+      "/clients/int-13.jpeg",
+      "/clients/int-17.webp",
+      "/clients/int-20.jpg",
+      "/clients/int-12.webp",
+
+      "/clients/int-1.webp",
+      "/clients/int-2.png",
+      "/clients/int-3.png",
+      "/clients/int-4.png",
+      "/clients/int-6.png",
+      "/clients/int-16.webp",
+      "/clients/int-18.png",
+      "/clients/int-19.png",
+      "/clients/int-11.avif",
+      "/clients/int-13.jpeg",
+      "/clients/int-17.webp",
+      "/clients/int-20.jpg",
+      "/clients/int-12.webp",
+
     ].map((logo, i) => (
       <div key={i} className="relative w-40 h-16 shrink-0">
         <Image src={logo} alt="" fill className="object-contain" />
@@ -929,16 +949,16 @@ const processSteps = [
           className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center"
         >
           <div>
+            <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Cities Covered</p>
+            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={56} trigger={statsInView} />+</h3>
+          </div>
+          <div>
             <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Projects Completed</p>
-            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={250} trigger={statsInView} />+</h3>
+            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={1300} trigger={statsInView} />+</h3>
           </div>
           <div>
-            <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Years Experience</p>
-            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={15} trigger={statsInView} />+</h3>
-          </div>
-          <div>
-            <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Client Satisfaction</p>
-            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={100} trigger={statsInView} />%</h3>
+            <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Experience</p>
+            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={9} trigger={statsInView} />+</h3>
           </div>
         </motion.div>
       </section>
@@ -1024,11 +1044,11 @@ const processSteps = [
               </p>
               <div className="grid grid-cols-2 gap-6 pt-4">
                 <div className="bg-linear-to-br from-[#f8f5f0] to-[#f0ebe0] rounded-2xl p-6 border border-[#886c46]/20">
-                  <p className={`${playfair.className} text-3xl font-bold text-[#886c46] mb-1`}>250+</p>
+                  <p className={`${playfair.className} text-3xl font-bold text-[#886c46] mb-1`}>1300+</p>
                   <p className={`${inter.className} text-black/70 text-sm`}>Projects Delivered</p>
                 </div>
                 <div className="bg-linear-to-br from-[#f8f5f0] to-[#f0ebe0] rounded-2xl p-6 border border-[#886c46]/20">
-                  <p className={`${playfair.className} text-3xl font-bold text-[#886c46] mb-1`}>100%</p>
+                  <p className={`${playfair.className} text-3xl font-bold text-[#886c46] mb-1`}>98%</p>
                   <p className={`${inter.className} text-black/70 text-sm`}>Client Satisfaction</p>
                 </div>
               </div>
@@ -1081,9 +1101,6 @@ const processSteps = [
                       <h4 className={`${playfair.className} font-semibold text-black`}>
                         {review.name}
                       </h4>
-                      <p className={`${inter.className} text-black/60 text-xs`}>
-                        {review.title}
-                      </p>
                     </div>
                   </motion.div>
                 );
@@ -1214,13 +1231,22 @@ const processSteps = [
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-8 px-4"
+                className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
               >
-                <div className="text-5xl mb-4">🎉</div>
-                <h4 className="text-white text-xl font-semibold mb-2">Thank You!</h4>
-                <p className="text-white/80 text-center text-sm leading-relaxed">
-                  Your request has been received. Our team will contact you shortly.
+                <h3 className="text-white text-2xl font-bold text-center">
+                  Thank you, <span className="text-[#d7a661]">{contactFormData.name}</span>!
+                </h3>
+                <p className="text-white/90 text-center text-sm font-semibold">
+                  Your Consult Awaits.
                 </p>
+                <div className="space-y-3 w-full">
+                  <p className="text-white/80 text-center text-xs leading-relaxed">
+                    Choose a time now or talk to a concierge on <span className="font-semibold">WhatsApp</span>
+                  </p>
+                  <p className="text-white/70 text-center text-xs italic">
+                    We reply in &lt;= 15 Minutes (Mon-Sat, 10am-7pm IST)
+                  </p>
+                </div>
               </motion.div>
             ) : (
               <form onSubmit={(e) => handleFormSubmit(e, contactFormData, setContactFormLoading, setContactFormSuccess, setContactFormData)} className={`${inter.className} space-y-3`}>
@@ -1258,10 +1284,10 @@ const processSteps = [
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Budget Range</option>
-                  <option>₹15 – ₹25 Lakhs</option>
-                  <option>₹25 – ₹40 Lakhs</option>
-                  <option>₹40 – ₹60 Lakhs</option>
-                  <option>₹60 Lakhs+</option>
+                  <option>₹3 - 5 Lakhs</option>
+                  <option>₹5 - 8 Lakhs</option>
+                  <option>₹12 - 15 Lakhs</option>
+                  <option>₹20L - 1Cr+</option>
                 </select>
 
                 <select
@@ -1270,10 +1296,16 @@ const processSteps = [
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Project Type</option>
-                  <option>Farm House</option>
-                  <option>Prefab Villa</option>
-                  <option>Container Home</option>
-                  <option>Weekend Home</option>
+                  <option>A-Frame</option>
+                  <option>Wooden House</option>
+                  <option>Arc Pod</option>
+                  <option>Farmhouse</option>
+                  <option>Barn House</option>
+                  <option>Container House</option>
+                  <option>Prefab Home</option>
+                  <option>Portable Toilets</option>
+                  <option>Security Cabins</option>
+                  <option>Modular Restrooms</option>
                 </select>
 
                 <button
@@ -1350,7 +1382,7 @@ const processSteps = [
                       <Phone className="w-4 h-4 text-[#886c46]" />
                     </div>
                     <span className={`${inter.className} text-sm text-black/80 group-hover:text-[#886c46] transition`}>
-                      +91 98765 43210
+                      +91 9000800665
                     </span>
                   </a>
                   <a href="tel:+919876543211" className="flex items-center gap-3 group">
@@ -1358,7 +1390,7 @@ const processSteps = [
                       <Phone className="w-4 h-4 text-[#886c46]" />
                     </div>
                     <span className={`${inter.className} text-sm text-black/80 group-hover:text-[#886c46] transition`}>
-                      +91 98765 43211
+                      +91 8185892514
                     </span>
                   </a>
                 </div>
@@ -1388,7 +1420,7 @@ const processSteps = [
                       <Mail className="w-4 h-4 text-[#886c46]" />
                     </div>
                     <span className={`${inter.className} text-sm text-black/80 group-hover:text-[#886c46] transition`}>
-                      support@texoprefab.com
+                      sales@texoprefab.com
                     </span>
                   </a>
                 </div>
@@ -1425,17 +1457,17 @@ const processSteps = [
                   </div>
                   <div>
                     <h4 className={`${playfair.className} text-xl font-semibold text-[#886c46] mb-1`}>
-                      Headquarters
+                      Manufacturing unit & Sales office
                     </h4>
                     <div className="h-1 w-12 bg-[#d7a661]/30 rounded-full" />
                   </div>
                 </div>
                 
                 <p className={`${inter.className} text-sm text-black/75 leading-relaxed mb-6 font-light`}>
-                  Texo Prefab Industries<br />
-                  Plot No. 45, Industrial Zone<br />
-                  New Delhi - 110001<br />
-                  India
+                  Texo Prefab, Plot No.22, Phase-1, I.D.A,Jeedimetla,<br />
+                   Shapur Nagar,Hyderabad,<br />
+                  Telangana 500055<br />
+                    India
                 </p>
                 <a 
                   href="https://maps.google.com/?q=Plot+No.+45,+Industrial+Zone,+New+Delhi+110001,+India" 
@@ -1461,16 +1493,16 @@ const processSteps = [
                   </div>
                   <div>
                     <h4 className={`${playfair.className} text-xl font-semibold text-[#886c46] mb-1`}>
-                      Regional Office
+                      Experience Centre & Branch Office
                     </h4>
                     <div className="h-1 w-12 bg-[#d7a661]/30 rounded-full" />
                   </div>
                 </div>
                 
                 <p className={`${inter.className} text-sm text-black/75 leading-relaxed mb-6 font-light`}>
-                  Texo Prefab Solutions<br />
-                  Sector 12, Tech Park<br />
-                  Bangalore - 560001<br />
+                  Texo Prefab World<br />
+                  Muthangi, Patancheruvu ORR Exit No.03<br />
+                  Hyderabad, Telangana 502300<br />
                   India
                 </p>
                 <a 
@@ -1502,55 +1534,32 @@ const processSteps = [
         </motion.div>
       </footer>
 
-      <div className="fixed bottom-8 right-8 z-50">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-          className="relative"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={openContact ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-20 right-0 flex flex-col gap-3 pointer-events-none"
-            style={{ pointerEvents: openContact ? 'auto' : 'none' }}
-          >
-            <motion.a
-              href="https://wa.me/8317539715"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300 flex-col"
-            >
-              <MessageCircle className="w-6 h-6" />
-            </motion.a>
+      {/* WhatsApp on Left */}
+      <motion.a
+        href="https://wa.me/918317539715"
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.3 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-8 left-8 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300"
+      >
+        <MessageCircle className="w-6 h-6" />
+      </motion.a>
 
-            <motion.a
-              href="tel:+919876543210"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300"
-            >
-              <Phone className="w-6 h-6" />
-            </motion.a>
-          </motion.div>
-
-          <motion.button
-            onClick={() => setOpenContact(!openContact)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-16 h-16 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-full flex items-center justify-center shadow-2xl transition duration-300 border-4 border-white"
-          >
-            {openContact ? (
-              <X className="w-7 h-7" />
-            ) : (
-              <Contact className="w-7 h-7" />
-            )}
-          </motion.button>
-        </motion.div>
-      </div>
+      <motion.a
+        href="tel:+919876543210"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.3 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300"
+      >
+        <Phone className="w-6 h-6" />
+      </motion.a>
 
     </main>
   );
