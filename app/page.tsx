@@ -27,19 +27,16 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
 
-      {/* Background Image */}
       <Image
-        src="/bg.jpg" // add image in public folder
+        src="/bg.jpg" 
         alt="Texo Prefab"
         fill
         priority
         className="object-cover"
       />
 
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/65" />
 
-      {/* Content */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
