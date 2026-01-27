@@ -48,7 +48,6 @@ export default function FarmHouses() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [openContact, setOpenContact] = useState(false);
   const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
   const [heroFormSuccess, setHeroFormSuccess] = useState(false);
