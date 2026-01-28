@@ -21,26 +21,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <Head>
-        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/apple-touch-icon.png" />
 
-        {/* SEO Meta */}
         <meta name="robots" content="index, follow" />
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content="Prefab Solutions" />
 
-        {/* Open Graph (Social Preview) */}
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://texoprefabworld.in" />
         <meta property="og:image" content="https://texoprefabworld.in/logo.webp" />
 
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
