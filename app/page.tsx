@@ -64,7 +64,7 @@ export default function Home() {
           </a>
 
           <span className="text-white/60 text-sm">
-            Redirecting automatically…
+            Redirecting automatically...
           </span>
         </div>
       </motion.div>
