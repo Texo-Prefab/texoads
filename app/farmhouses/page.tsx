@@ -1011,7 +1011,7 @@ const processSteps = [
               </div>
 
               <p className={`${inter.className} text-black/70 text-sm mb-6`}>
-                Based on 63 reviews
+                Based on 76 reviews
               </p>
 
               <div className={`${inter.className} text-sm`}>
@@ -1040,7 +1040,7 @@ const processSteps = [
                 </h3>
               </div>
               <p className={`${inter.className} text-black/70 text-lg leading-relaxed`}>
-                Our clients trust us to deliver exceptional prefab solutions that exceed expectations. With a 4.6-star rating based on 63 reviews, we`re committed to maintaining the highest standards of quality and customer satisfaction in every project we undertake.
+                Our clients trust us to deliver exceptional prefab solutions that exceed expectations. With a 4.6-star rating based on 76 reviews, we`re committed to maintaining the highest standards of quality and customer satisfaction in every project we undertake.
               </p>
               <div className="grid grid-cols-2 gap-6 pt-4">
                 <div className="bg-linear-to-br from-[#f8f5f0] to-[#f0ebe0] rounded-2xl p-6 border border-[#886c46]/20">
