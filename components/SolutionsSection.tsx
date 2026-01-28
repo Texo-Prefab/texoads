@@ -11,35 +11,37 @@ const inter = Inter({ subsets: ["latin"] });
 const products = [
   {
     id: 1,
-    title: "A Frame",
-    description: "Triangular prefab structures ideal for resorts and weekend homes.",
-    image: "/products/A frame.png",
+    title: "Barn House",
+    description: "High-ceiling homes inspired by traditional barn designs.",
+    image: "/products/Barn House.png",
   },
   {
     id: 2,
-    title: "Wooden House",
-    description: "Engineered steel structures with wooden finishes.",
-    image: "/products/Wooden House.jpg",
-  },
-  {
-    id: 3,
     title: "Arc Pod",
     description: "Curved modular units used for premium stays and cafes.",
     image: "/products/arc-pod.jpg",
   },
   {
+    id: 3,
+    title: "A Frame",
+    description: "Triangular prefab structures ideal for resorts and weekend homes.",
+    image: "/products/A frame.png",
+  },
+  {
     id: 4,
+    title: "Wooden House",
+    description: "Engineered steel structures with wooden finishes.",
+    image: "/products/Wooden House.jpg",
+  },
+  
+  {
+    id: 5,
     title: "Prefab Homes",
     description: "Factory-built homes assembled on-site quickly.",
     image: "/products/Prefab-Homes.png",
   },
   
-  {
-    id: 5,
-    title: "Barn House",
-    description: "High-ceiling homes inspired by traditional barn designs.",
-    image: "/products/Barn House.png",
-  },
+  
   {
     id: 6,
     title: "Container Homes",

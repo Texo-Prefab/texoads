@@ -75,7 +75,7 @@ export default function FarmHouses() {
       if (response.ok) {
         setSuccess(true);
         setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
-        setTimeout(() => setSuccess(false), 5000); // Hide message after 5 seconds
+        setTimeout(() => setSuccess(false), 10000); // Hide message after 10 seconds
       } else {
         alert('Failed to send the form. Please try again.');
       }
@@ -270,7 +270,7 @@ const processSteps = [
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-2 h-2 bg-[#d7a661] rounded-full"
               />
-              <span className={`${inter.className} text-white text-sm font-medium`}>Premium Prefab Products</span>
+              <span className={`${inter.className} text-white text-sm font-medium`}>Texo Signature builds</span>
             </div>
           </motion.div>
 
@@ -364,7 +364,7 @@ const processSteps = [
             className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
             >
             <h3 className={`${playfair.className} text-white text-xl mb-5`}>
-                Get Free Consultation
+                Schedule a Project Discussion
             </h3>
 
             {heroFormSuccess ? (
@@ -374,10 +374,10 @@ const processSteps = [
                 className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
               >
                 <h3 className="text-white text-2xl font-bold text-center">
-                  Thank you, <span className="text-[#d7a661]">{heroFormData.name}</span>!
+                  Thank you!
                 </h3>
-                <p className="text-white/90 text-center text-sm font-semibold">
-                  Your Consult Awaits.
+                <p className="text-white/90 text-center text-2xl font-semibold">
+                  Your Dream Project Awaits.
                 </p>
                 <div className="space-y-3 w-full">
                   <p className="text-white/80 text-center text-xs leading-relaxed">
@@ -401,7 +401,7 @@ const processSteps = [
                 />
 
                 <input
-                  type="tel"
+                  type="number"
                   required
                   value={heroFormData.phone}
                   onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
@@ -411,7 +411,6 @@ const processSteps = [
 
                 <input
                   type="email"
-                  required
                   value={heroFormData.email}
                   onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
@@ -420,6 +419,7 @@ const processSteps = [
 
                 <select
                   value={heroFormData.budgetRange}
+                  required
                   onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
@@ -432,6 +432,7 @@ const processSteps = [
 
                 <select
                   value={heroFormData.projectType}
+                  required
                   onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
@@ -651,10 +652,10 @@ const processSteps = [
       whileInView={{ opacity: 1, scale: 1, x: 0 }}
       viewport={{ once: false }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="relative h-130 md:h-150 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
+      className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/office-1.png"
+        src="/products/why-choose-final.jpg"
         alt="Why Choose Texo Prefab"
         fill
         className="object-fill group-hover:scale-105 transition duration-700"
@@ -1223,7 +1224,7 @@ const processSteps = [
             className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10"
             >
             <h3 className={`${playfair.className} text-white text-xl mb-5`}>
-                Get Free Consultation
+                Schedula a Project Discussion
             </h3>
 
             {contactFormSuccess ? (
@@ -1233,17 +1234,17 @@ const processSteps = [
                 className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
               >
                 <h3 className="text-white text-2xl font-bold text-center">
-                  Thank you, <span className="text-[#d7a661]">{contactFormData.name}</span>!
+                  Thank you!
                 </h3>
-                <p className="text-white/90 text-center text-sm font-semibold">
-                  Your Consult Awaits.
+                <p className="text-white/90 text-center text-2xl font-semibold">
+                  Your Dream Project Awaits.
                 </p>
                 <div className="space-y-3 w-full">
                   <p className="text-white/80 text-center text-xs leading-relaxed">
                     Choose a time now or talk to a concierge on <span className="font-semibold">WhatsApp</span>
                   </p>
                   <p className="text-white/70 text-center text-xs italic">
-                    We reply in &lt;= 15 Minutes (Mon-Sat, 10am-7pm IST)
+                    We reply within 15 Minutes (Mon-Sat, 10am-7pm IST)
                   </p>
                 </div>
               </motion.div>
@@ -1270,7 +1271,6 @@ const processSteps = [
 
                 <input
                   type="email"
-                  required
                   value={contactFormData.email}
                   onChange={(e) => setContactFormData({ ...contactFormData, email: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
@@ -1279,6 +1279,7 @@ const processSteps = [
 
                 <select
                   value={contactFormData.budgetRange}
+                  required
                   onChange={(e) => setContactFormData({ ...contactFormData, budgetRange: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
@@ -1291,6 +1292,7 @@ const processSteps = [
 
                 <select
                   value={contactFormData.projectType}
+                  required
                   onChange={(e) => setContactFormData({ ...contactFormData, projectType: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
@@ -1428,7 +1430,6 @@ const processSteps = [
           </div>
         </div>
 
-        {/* MIDDLE SECTION - Locations */}
         <div className="py-16 border-b border-black/5">
           <div className="max-w-7xl mx-auto px-6">
             <motion.h3
@@ -1469,7 +1470,7 @@ const processSteps = [
                     India
                 </p>
                 <a 
-                  href="https://maps.google.com/?q=Plot+No.+45,+Industrial+Zone,+New+Delhi+110001,+India" 
+                  href="#" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-xl transition duration-300 font-medium shadow-lg hover:shadow-xl group/btn"
@@ -1505,7 +1506,7 @@ const processSteps = [
                   India
                 </p>
                 <a 
-                  href="https://maps.google.com/?q=Sector+12,+Tech+Park,+Bangalore+560001,+India" 
+                  href="#" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-xl transition duration-300 font-medium shadow-lg hover:shadow-xl group/btn"
@@ -1527,15 +1528,14 @@ const processSteps = [
         >
           <div className="max-w-7xl mx-auto px-6 text-center">
             <p className={`${inter.className} text-xs text-black/60 font-light tracking-wide`}>
-              © 2026 Texo Prefab. All rights reserved. <span className="text-[#886c46]">•</span> Crafting Quality Homes, Building Better Futures
+              © 2016:2026 Texo Prefab. All rights reserved. <span className="text-[#886c46]">•</span> Crafting Quality Homes, Building Better Futures
             </p>
           </div>
         </motion.div>
       </footer>
 
-      {/* WhatsApp on Left */}
       <motion.a
-        href="https://wa.me/918317539715"
+        href="https://wa.me/919000800665"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}
@@ -1549,7 +1549,7 @@ const processSteps = [
       </motion.a>
 
       <motion.a
-        href="tel:+919876543210"
+        href="tel:+919000800665"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3 }}

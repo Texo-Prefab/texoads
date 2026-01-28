@@ -2,62 +2,14 @@ import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { NextRequest, NextResponse } from 'next/server';
 
-const sheets = google.sheets('v4');
-
-async function appendToGoogleSheets(data: { name: string; phone: string; email: string; budgetRange: string; projectType: string }) {
-  try {
-    if (!process.env.GOOGLE_SHEETS_ID || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
-      console.log('Google Sheets not configured, skipping sheet update');
-      return;
-    }
-
-    // Create JWT auth with correct parameters
-    const auth = new google.auth.JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-      scopes: 'https://www.googleapis.com/auth/spreadsheets',
-    });
-
-    // Append data to sheet
-    await sheets.spreadsheets.values.append({
-      auth,
-      spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-      range: 'Sheet1!A:F',
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [
-          [
-            data.name,
-            data.phone,
-            data.email,
-            data.budgetRange,
-            data.projectType,
-            new Date().toLocaleString(),
-          ],
-        ],
-      },
-    });
-
-    console.log('Data added to Google Sheets successfully');
-  } catch (error) {
-    console.error('Error adding to Google Sheets:', error instanceof Error ? error.message : 'Unknown error');
-    // Don't throw - we still want the email to be sent even if sheets fails
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
     const { name, phone, email, budgetRange, projectType } = await request.json();
 
-    // Validate required fields
     if (!name || !phone || !email) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Validate environment variables
     if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD || !process.env.RECIPIENT_EMAIL) {
       console.error('Missing email configuration:', {
         hasEmail: !!process.env.SMTP_EMAIL,
@@ -85,7 +37,7 @@ export async function POST(request: NextRequest) {
       to: process.env.RECIPIENT_EMAIL,
       subject: 'New Incoming Lead [Farmhouse Page]',
       html: `
-        <h2>New Consultation Request</h2>
+        <h2>New Incoming Lead</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email}</p>
@@ -95,13 +47,47 @@ export async function POST(request: NextRequest) {
       `,
     };
 
-    const formDataForSheet = { name, phone, email, budgetRange, projectType };
-
     await transporter.sendMail(mailOptions);
+console.log('Sheets env check:', {
+  email: process.env.GOOGLE_CLIENT_EMAIL,
+  key: !!process.env.GOOGLE_PRIVATE_KEY,
+  sheet: process.env.GOOGLE_SHEET_ID,
+});
+    // Append to Google Sheets if credentials are present. Failures here do not block email sending.
+    if (process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
+      const auth = new google.auth.JWT({
+        email: process.env.GOOGLE_CLIENT_EMAIL,
+        key: (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
 
-    appendToGoogleSheets(formDataForSheet).catch(err => 
-      console.error('Google Sheets error:', err)
-    );
+      const sheets = google.sheets({ version: 'v4', auth });
+
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: process.env.GOOGLE_SHEET_ID,
+          range: 'Leads!A:G',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              [
+                'Website',
+                new Date().toLocaleString(),
+                name,
+                email,
+                phone,
+                projectType || 'Not specified',
+                budgetRange || 'Not specified',
+              ],
+            ],
+          },
+        });
+      } catch (sheetErr) {
+        console.error('Failed to append to Google Sheets:', sheetErr);
+      }
+    } else {
+      console.warn('Skipping Google Sheets append; GOOGLE_CLIENT_EMAIL/GOOGLE_PRIVATE_KEY/GOOGLE_SHEET_ID missing');
+    }
 
     return NextResponse.json(
       { success: true, message: 'Email sent successfully' },
