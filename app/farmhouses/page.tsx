@@ -48,10 +48,10 @@ export default function FarmHouses() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
+  const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
   const [heroFormSuccess, setHeroFormSuccess] = useState(false);
-  const [contactFormData, setContactFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
+  const [contactFormData, setContactFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
   const [contactFormLoading, setContactFormLoading] = useState(false);
   const [contactFormSuccess, setContactFormSuccess] = useState(false);
 
@@ -74,7 +74,7 @@ export default function FarmHouses() {
 
       if (response.ok) {
         setSuccess(true);
-        setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '' });
+        setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
         setTimeout(() => setSuccess(false), 10000); // Hide message after 10 seconds
       } else {
         alert('Failed to send the form. Please try again.');

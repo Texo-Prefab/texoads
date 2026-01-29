@@ -143,7 +143,7 @@ export default function SolutionsSection() {
         <motion.h2
           className={`${playfair.className} text-4xl md:text-6xl font-semibold bg-linear-to-r from-black via-[#886c46] to-black bg-clip-text text-transparent mb-4`}
         >
-          Explore Our Solutions
+          Explore Our Products
         </motion.h2>
 
         <p className={`${inter.className} text-zinc-600 text-lg max-w-2xl mx-auto mb-6`}>
@@ -159,7 +159,8 @@ export default function SolutionsSection() {
           <p className={`${inter.className} text-center`}>
             Modern prefab products starting at{" "}
             <span className="bg-linear-to-r from-[#886c46] to-[#d7a661] bg-clip-text text-transparent font-bold text-2xl">
-              <CountUp start={0} end={2.5} decimals={1} duration={1.6} />K per sq.ft
+              <span>₹</span>
+              <CountUp start={0} end={2500} decimals={0} duration={1.6} /> per sq.ft
             </span>
           </p>
         </motion.div>

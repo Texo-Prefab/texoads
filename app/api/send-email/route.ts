@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, phone, email, budgetRange, projectType } = await request.json();
+    const { name, phone, email, budgetRange, projectType, source } = await request.json();
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -35,9 +35,10 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: process.env.SMTP_EMAIL,
       to: process.env.RECIPIENT_EMAIL,
-      subject: 'New Incoming Lead [Farmhouse Page]',
+      subject: `New Incoming Lead [${source}]`,
       html: `
         <h2>New Incoming Lead</h2>
+        <p><strong>Lead From:</strong> ${source}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email}</p>
@@ -64,24 +65,49 @@ console.log('Sheets env check:', {
       const sheets = google.sheets({ version: 'v4', auth });
 
       try {
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: 'Leads!A:G',
-          valueInputOption: 'USER_ENTERED',
-          requestBody: {
-            values: [
-              [
-                'Website',
-                new Date().toLocaleString(),
-                name,
-                email,
-                phone,
-                projectType || 'Not specified',
-                budgetRange || 'Not specified',
+        // await sheets.spreadsheets.values.append({
+        //   spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        //   range: 'Leads!A:G',
+        //   valueInputOption: 'USER_ENTERED',
+        //   requestBody: {
+        //     values: [
+        //       [
+        //         source,
+        //         new Date().toLocaleString(),
+        //         name,
+        //         email,
+        //         phone,
+        //         projectType || 'Not specified',
+        //         budgetRange || 'Not specified',
+        //       ],
+        //     ],
+        //   },
+        // });
+        const sheetName =
+            source === 'Farmhouses'
+              ? 'Farmhouses'
+              : source === 'Offices'
+              ? 'Offices'
+              : 'Leads';
+
+          await sheets.spreadsheets.values.append({
+            spreadsheetId: process.env.GOOGLE_SHEET_ID,
+            range: `${sheetName}!A:G`,
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+              values: [
+                [
+                  source,
+                  new Date().toLocaleString(),
+                  name,
+                  email,
+                  phone,
+                  projectType || 'Not specified',
+                  budgetRange || 'Not specified',
+                ],
               ],
-            ],
-          },
-        });
+            },
+          });
       } catch (sheetErr) {
         console.error('Failed to append to Google Sheets:', sheetErr);
       }
