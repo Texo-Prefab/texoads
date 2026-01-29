@@ -318,7 +318,7 @@ const processSteps = [
           >
             <p className={`${inter.className} text-white/80 text-lg max-w-xl leading-relaxed`}>
               Skip long construction timelines. Our prefab homes are expertly designed,
-              factory-built, and installed within weeks — without compromising on
+              factory-built, and installed within weeks - without compromising on
               quality, structural strength, or finishing standards.
             </p>
 
