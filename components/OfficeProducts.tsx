@@ -8,155 +8,184 @@ import { Playfair_Display, Inter } from "next/font/google";
 const playfair = Playfair_Display({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 
-const products = [
-  {
-  id: 1,
-  title: "Portable Container Offices",
-  description: "Smart modular workspaces designed for fast setup, durability, and efficient on-site operations.",
-  image: "/products/Barn House.png",
-},
-{
-  id: 2,
-  title: "Prefab Site Offices",
-  description: "Factory-built office units offering comfort, strength, and quick deployment at project locations.",
-  image: "/products/arc-pod.jpg",
-},
-{
-  id: 3,
-  title: "Portable Cabins",
-  description: "Compact prefabricated cabins built for flexibility, mobility, and long-term functional use.",
-  image: "/products/A frame.png",
-},
 
-  
-  
+const SITE_OFFICES = [
+  {
+    id: 1,
+    title: "Prefab Site Office – Model A",
+    description:
+      "Factory-built site office cabins engineered for strength, insulation, and rapid installation.",
+    image: "/products/offices/prefabsiteoffice.png",
+    collection: "Office Solutions",
+  },
+  {
+    id: 2,
+    title: "Prefab Site Office – Model B",
+    description:
+      "Modular workspace units offering enhanced comfort for long-term project requirements.",
+    image: "/products/offices/Prefab Site Office .jpg",
+    collection: "Office Solutions",
+  },
+  {
+    id: 3,
+    title: "Prefab Site Office – Model C",
+    description:
+      "Premium site offices designed with superior finishes and optimized floor planning.",
+    image: "/products/offices/siteoffice.jpg",
+    collection: "Office Solutions",
+  },
 ];
+
+const CONTAINER_OFFICES = [
+  {
+    id: 4,
+    title: "Container Office – Standard",
+    description:
+      "Portable container offices converted into professional workspaces with modern interiors.",
+    image: "/products/offices/containeroffice.jpg",
+    collection: "Office Solutions",
+  },
+  {
+    id: 5,
+    title: "Container Office – Executive",
+    description:
+      "High-end container offices featuring insulation, paneling, and premium electrical layouts.",
+    image: "/products/offices/Portable Container Offices.png",
+    collection: "Office Solutions",
+  },
+  {
+    id: 6,
+    title: "Container Office – Custom",
+    description:
+      "Fully customized container offices built as per operational and branding needs.",
+    image: "/products/offices/container-3.png",
+    collection: "Office Solutions",
+  },
+];
+
+/* ===============================
+   CARD COMPONENT (UNCHANGED)
+================================ */
+
+const ProductCard = ({
+  product,
+  style,
+  delay,
+}: {
+  product: any;
+  style?: any;
+  delay: number;
+}) => (
+  <motion.div
+    style={style}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: false }}
+    transition={{
+      duration: 0.9,
+      delay: delay * 0.1,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    className="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
+  >
+    {/* Image */}
+    <Image
+      src={product.image}
+      alt={product.title}
+      fill
+      className="object-cover group-hover:scale-110 transition duration-700"
+    />
+
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-linear-to-br from-black/10 via-black/30 to-black/70 group-hover:from-black/40 group-hover:to-black/90 transition duration-700" />
+
+    {/* Content */}
+    <div className="absolute inset-0 p-8 flex flex-col justify-between">
+      <span className="px-4 py-2 bg-[#d7a661] text-black text-xs font-bold rounded-full w-fit">
+        {product.collection}
+      </span>
+
+      <div>
+        <h3
+          className={`${playfair.className} text-3xl font-semibold text-white mb-2 group-hover:text-[#d7a661] transition`}
+        >
+          {product.title}
+        </h3>
+        <p className={`${inter.className} text-white/90 text-sm max-w-xs`}>
+          {product.description}
+        </p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+/* ===============================
+   MAIN SECTION
+================================ */
 
 export default function OfficeProducts() {
   const { scrollYProgress } = useScroll();
   const ySlow = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const yFast = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-  const firstRow = products.slice(0, 3);
-  const secondRow = products.slice(3, 5);
-  const thirdRow = products.slice(5, 7);
-
-  const ProductCard = ({ product, style, delay }: { product: typeof products[0]; style?: any; delay: number }) => (
-    <motion.div
-      style={style}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.9, delay: delay * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
-    >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src={product.image}
-          alt={product.title}
-          fill
-          className="object-cover group-hover:scale-110 transition duration-700"
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-br from-black/1 via-black/20 to-black/40 group-hover:from-black/40 group-hover:via-black/60 group-hover:to-black/90 transition duration-700" />
-      </div>
-
-      {/* Content Container */}
-      <div className="absolute inset-0 p-8 flex flex-col justify-between">
-        {/* Top Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.5, delay: delay * 0.1 + 0.3 }}
-          className="self-start"
-        >
-          <span className="px-4 py-2 bg-[#d7a661] text-black text-xs font-bold rounded-full backdrop-blur-md">
-            PREMIUM COLLECTION
-          </span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.5, delay: delay * 0.1 + 0.2 }}
-          className="space-y-4"
-        >
-          <div>
-            <h3
-              className={`${playfair.className} text-3xl md:text-4xl font-semibold text-white mb-2 group-hover:text-[#d7a661] transition duration-500`}
-            >
-              {product.title}
-            </h3>
-            <p className={`${inter.className} text-white/90 text-sm leading-relaxed max-w-xs`}>
-              {product.description}
-            </p>
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        whileHover={{ opacity: 0.2, x: 200 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent pointer-events-none"
-      />
-    </motion.div>
-  );
 
   return (
     <section className="py-32 max-w-7xl mx-auto px-6 overflow-hidden bg-linear-to-b from-white via-[#faf8f4] to-white">
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-20 text-center"
-      >
-        <motion.h2
+
+      {/* MAIN HEADING */}
+      <div className="mb-24 text-center">
+        <h2
           className={`${playfair.className} text-4xl md:text-6xl font-semibold bg-linear-to-r from-black via-[#886c46] to-black bg-clip-text text-transparent mb-4`}
         >
-          Explore Our Products
-        </motion.h2>
+          Explore Our Office Solutions
+        </h2>
 
         <p className={`${inter.className} text-zinc-600 text-lg max-w-2xl mx-auto mb-6`}>
-          Discover our premium collection of architecturally designed prefab solutions, each crafted to perfection
+          Premium prefab and container-based office solutions engineered for speed,
+          durability, and professional environments.
         </p>
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="inline-block"
+        <p className={`${inter.className}`}>
+          Starting at{" "}
+          <span className="bg-linear-to-r from-[#886c46] to-[#d7a661] bg-clip-text text-transparent font-bold text-2xl">
+            ₹<CountUp end={2500} duration={1.6} /> per sq.ft
+          </span>
+        </p>
+      </div>
+
+      {/* ================= SITE OFFICES ================= */}
+      <div className="mb-28">
+        <h3
+          className={`${playfair.className} text-3xl md:text-4xl mb-10 text-center`}
         >
-          <p className={`${inter.className} text-center`}>
-            Modern prefab products starting at{" "}
-            <span className="bg-linear-to-r from-[#886c46] to-[#d7a661] bg-clip-text text-transparent font-bold text-2xl">
-              ₹<CountUp start={0} end={2500} decimals={0} duration={1.6} /> per sq.ft
-            </span>
-          </p>
-        </motion.div>
-      </motion.div>
+          Prefab Site Offices
+        </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-        {firstRow.map((product, idx) => (
-          <ProductCard key={product.id} product={product} style={{ y: ySlow }} delay={idx} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {SITE_OFFICES.map((p, i) => (
+            <ProductCard key={p.id} product={p} style={{ y: ySlow }} delay={i} />
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 md:px-24">
-        {secondRow.map((product, idx) => (
-          <ProductCard key={product.id} product={product} style={{ y: yFast }} delay={idx + 3} />
-        ))}
+      {/* ================= CONTAINER OFFICES ================= */}
+      <div>
+        <h3
+          className={`${playfair.className} text-3xl md:text-4xl mb-10 text-center`}
+        >
+          Container Offices
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {CONTAINER_OFFICES.map((p, i) => (
+            <ProductCard
+              key={p.id}
+              product={p}
+              style={{ y: ySlow }}
+              delay={i + 3}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:px-24">
-        {thirdRow.map((product, idx) => (
-          <ProductCard key={product.id} product={product} style={{ y: ySlow }} delay={idx + 5} />
-        ))}
-      </div>
     </section>
   );
 }

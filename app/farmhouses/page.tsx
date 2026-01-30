@@ -3,14 +3,14 @@
 import Image from 'next/image';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
-import OurPortfolio from '@/components/OurPortfolio';
-import SolutionsSection from '@/components/SolutionsSection';
 import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
 import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
-
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import SolutionsSection from '@/components/SolutionsSection';
+import OurPortfolio from '@/components/OfficePortfolio';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -46,58 +46,46 @@ const inter = Inter({
   weight: ['400', '500'],
 });
 
-export default function FarmHouses() {
+export default function PrefabOffices() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
-  const [heroFormSuccess, setHeroFormSuccess] = useState(false);
-  const [contactFormData, setContactFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
-  const [contactFormLoading, setContactFormLoading] = useState(false);
-  const [contactFormSuccess, setContactFormSuccess] = useState(false);
 const router = useRouter();
 
-  const handleFormSubmit = async (
+const handleFormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   formData: typeof heroFormData,
   setLoading: (loading: boolean) => void,
-  setSuccess: (success: boolean) => void,
-  setFormData: (data: typeof heroFormData) => void
+//   setSuccess: (success: boolean) => void,
+  setFormData: (data: typeof heroFormData) => void,
+  router: AppRouterInstance,
 ) => {
-  e.preventDefault();
-  setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      setSuccess(true);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        budgetRange: '',
-        projectType: '',
-        source: 'Farmhouses',
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
-      router.replace("/thankyou");
-    } else {
-      alert('Failed to send the form. Please try again.');
+      if (response.ok) {
+        setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source: 'Offices' });
+        router.replace("/thankyou");
+        
+      } else {
+        alert('Failed to send the form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error('Form submission error:', error);
-    alert('An error occurred. Please try again.');
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   const faqs = [
     {
@@ -370,98 +358,95 @@ const processSteps = [
         </div>
 
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
-            >
-            <h3 className={`${playfair.className} text-white text-xl mb-5`}>
-                Schedule a Project Discussion
-            </h3>
-
-            
-              <form
-  onSubmit={(e) =>
-    handleFormSubmit(
-      e,
-      heroFormData,
-      setHeroFormLoading,
-      setHeroFormSuccess,
-      setHeroFormData
-    )
-  }
-  className={`${inter.className} space-y-3`}
->
-
-
-                <input
-                  type="text"
-                  required
-                  value={heroFormData.name}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, name: e.target.value })}
-                  className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Full Name"
-                />
-
-                <input
-                  type="number"
-                  required
-                  value={heroFormData.phone}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
-                  className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Phone Number"
-                />
-
-                <input
-                  type="email"
-                  value={heroFormData.email}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Email Address"
-                />
-
-                <select
-                  value={heroFormData.budgetRange}
-                  required
-                  onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                >
-                  <option value="">Select Budget Range</option>
-                  <option>₹3 - 5 Lakhs</option>
-                  <option>₹5 - 8 Lakhs</option>
-                  <option>₹12 - 15 Lakhs</option>
-                  <option>₹20L - 1Cr+</option>
-                </select>
-
-                <select
-                  value={heroFormData.projectType}
-                  required
-                  onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                >
-                  <option value="">Select Project Type</option>
-                  <option>A-Frame</option>
-                  <option>Wooden House</option>
-                  <option>Arc Pod</option>
-                  <option>Farmhouse</option>
-                  <option>Barn House</option>
-                  <option>Container House</option>
-                  <option>Prefab Home</option>
-                  <option>Portable Toilets</option>
-                  <option>Security Cabins</option>
-                  <option>Modular Restrooms</option>
-                </select>
-
-                <button
-                  type="submit"
-                  disabled={heroFormLoading}
-                  className="w-full mt-3 bg-[#886c46] my-4 text-black py-2.5 rounded-2xl text-sm font-medium hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {heroFormLoading ? 'Sending...' : 'Request Callback'}
-                </button>
-
-              </form>
-        </motion.div>
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
+                    >
+                    <h3 className={`${playfair.className} text-white text-xl mb-5`}>
+                        Schedule a Project Discussion
+                    </h3>
+        
+                    
+                      <form  onSubmit={(e) =>
+            handleFormSubmit(
+              e,
+              heroFormData,
+              setHeroFormLoading,
+              setHeroFormData,
+              router
+            )
+          } className={`${inter.className} space-y-3`}>
+        
+                        <input
+                          type="text"
+                          required
+                          value={heroFormData.name}
+                          onChange={(e) => setHeroFormData({ ...heroFormData, name: e.target.value })}
+                          className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                          placeholder="Full Name"
+                        />
+        
+                        <input
+                          type="number"
+                          required
+                          value={heroFormData.phone}
+                          onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
+                          className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                          placeholder="Phone Number"
+                        />
+        
+                        <input
+                          type="email"
+                          value={heroFormData.email}
+                          onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
+                          className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                          placeholder="Email Address"
+                        />
+        
+                        <select
+                          value={heroFormData.budgetRange}
+                          required
+                          onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
+                          className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
+                        >
+                          <option value="">Select Budget Range</option>
+                          <option>₹3 - 5 Lakhs</option>
+                          <option>₹5 - 8 Lakhs</option>
+                          <option>₹12 - 15 Lakhs</option>
+                          <option>₹20L - 1Cr+</option>
+                        </select>
+        
+                        <select
+                          value={heroFormData.projectType}
+                          required
+                          onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
+                          className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
+                        >
+                          <option value="">Select Project Type</option>
+                          <option>A-Frame</option>
+                          <option>Wooden House</option>
+                          <option>Arc Pod</option>
+                          <option>Farmhouse</option>
+                          <option>Barn House</option>
+                          <option>Container House</option>
+                          <option>Prefab Home</option>
+                          <option>Portable Toilets</option>
+                          <option>Security Cabins</option>
+                          <option>Modular Restrooms</option>
+                        </select>
+        
+                        <button
+                          type="submit"
+                          disabled={heroFormLoading}
+                          className="w-full mt-3 bg-[#886c46] my-4 text-black py-2.5 rounded-2xl text-sm font-medium hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {heroFormLoading ? 'Sending...' : 'Request Callback'}
+                        </button>
+        
+                      </form>
+                    
+                </motion.div>
 
 
       </div>
@@ -657,7 +642,7 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/why-choose-final.jpg"
+        src="/products/office-final-final-1.png"
         alt="Why Choose Texo Prefab"
         fill
         className="object-fill group-hover:scale-105 transition duration-700"
@@ -1219,98 +1204,95 @@ const processSteps = [
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
-            >
-            <h3 className={`${playfair.className} text-white text-xl mb-5`}>
-                Schedule a Project Discussion
-            </h3>
-
-            
-              <form
-  onSubmit={(e) =>
-    handleFormSubmit(
-      e,
-      heroFormData,
-      setHeroFormLoading,
-      setHeroFormSuccess,
-      setHeroFormData
-    )
-  }
-  className={`${inter.className} space-y-3`}
->
-
-
-                <input
-                  type="text"
-                  required
-                  value={heroFormData.name}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, name: e.target.value })}
-                  className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Full Name"
-                />
-
-                <input
-                  type="number"
-                  required
-                  value={heroFormData.phone}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
-                  className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Phone Number"
-                />
-
-                <input
-                  type="email"
-                  value={heroFormData.email}
-                  onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                  placeholder="Email Address"
-                />
-
-                <select
-                  value={heroFormData.budgetRange}
-                  required
-                  onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                >
-                  <option value="">Select Budget Range</option>
-                  <option>₹3 - 5 Lakhs</option>
-                  <option>₹5 - 8 Lakhs</option>
-                  <option>₹12 - 15 Lakhs</option>
-                  <option>₹20L - 1Cr+</option>
-                </select>
-
-                <select
-                  value={heroFormData.projectType}
-                  required
-                  onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
-                  className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                >
-                  <option value="">Select Project Type</option>
-                  <option>A-Frame</option>
-                  <option>Wooden House</option>
-                  <option>Arc Pod</option>
-                  <option>Farmhouse</option>
-                  <option>Barn House</option>
-                  <option>Container House</option>
-                  <option>Prefab Home</option>
-                  <option>Portable Toilets</option>
-                  <option>Security Cabins</option>
-                  <option>Modular Restrooms</option>
-                </select>
-
-                <button
-                  type="submit"
-                  disabled={heroFormLoading}
-                  className="w-full mt-3 bg-[#886c46] my-4 text-black py-2.5 rounded-2xl text-sm font-medium hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {heroFormLoading ? 'Sending...' : 'Request Callback'}
-                </button>
-
-              </form>
-        </motion.div>
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
+                      >
+                      <h3 className={`${playfair.className} text-white text-xl mb-5`}>
+                          Schedule a Project Discussion
+                      </h3>
+          
+                      
+                        <form  onSubmit={(e) =>
+              handleFormSubmit(
+                e,
+                heroFormData,
+                setHeroFormLoading,
+                setHeroFormData,
+                router
+              )
+            } className={`${inter.className} space-y-3`}>
+          
+                          <input
+                            type="text"
+                            required
+                            value={heroFormData.name}
+                            onChange={(e) => setHeroFormData({ ...heroFormData, name: e.target.value })}
+                            className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                            placeholder="Full Name"
+                          />
+          
+                          <input
+                            type="number"
+                            required
+                            value={heroFormData.phone}
+                            onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
+                            className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                            placeholder="Phone Number"
+                          />
+          
+                          <input
+                            type="email"
+                            value={heroFormData.email}
+                            onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
+                            className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                            placeholder="Email Address"
+                          />
+          
+                          <select
+                            value={heroFormData.budgetRange}
+                            required
+                            onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
+                            className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
+                          >
+                            <option value="">Select Budget Range</option>
+                            <option>₹3 - 5 Lakhs</option>
+                            <option>₹5 - 8 Lakhs</option>
+                            <option>₹12 - 15 Lakhs</option>
+                            <option>₹20L - 1Cr+</option>
+                          </select>
+          
+                          <select
+                            value={heroFormData.projectType}
+                            required
+                            onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
+                            className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
+                          >
+                            <option value="">Select Project Type</option>
+                            <option>A-Frame</option>
+                            <option>Wooden House</option>
+                            <option>Arc Pod</option>
+                            <option>Farmhouse</option>
+                            <option>Barn House</option>
+                            <option>Container House</option>
+                            <option>Prefab Home</option>
+                            <option>Portable Toilets</option>
+                            <option>Security Cabins</option>
+                            <option>Modular Restrooms</option>
+                          </select>
+          
+                          <button
+                            type="submit"
+                            disabled={heroFormLoading}
+                            className="w-full mt-3 bg-[#886c46] my-4 text-black py-2.5 rounded-2xl text-sm font-medium hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {heroFormLoading ? 'Sending...' : 'Request Callback'}
+                          </button>
+          
+                        </form>
+                      
+                  </motion.div>
         </div>
       </section>
 

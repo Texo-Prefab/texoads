@@ -11,6 +11,7 @@ import OfficePortfolio from '@/components/OfficePortfolio';
 import OfficeProducts from '@/components/OfficeProducts';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import ExtendedProducts from '@/components/ExtendedProducts';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -166,26 +167,27 @@ const handleFormSubmit = async (
   const prevReview = () => {
     setReviewIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
-const extendedProducts = [
-  {
-    id: 1,
-    title: "Portable Toilets",
-    description: "Temporary sanitation solutions for construction sites and events.",
-    image: "/products/Potable-Toilets.jpg",
-  },
-  {
-    id: 2,
-    title: "Security Cabins",
-    description: "Compact modular units for security personnel and checkpoints.",
-    image: "/products/Security-Cabin.png",
-  },
-  {
-    id: 3,
-    title: "Modular Restrooms",
-    description: "Prefabricated restroom facilities for commercial and public spaces.",
-    image: "/products/modular-toilets.jpeg",
-  },
-];
+//  const extendedProducts = [
+//   {
+//     id: 1,
+//     title: "Portable Toilets",
+//     description: "Temporary sanitation solutions for construction sites and events.",
+//     image: "/products/Potable-Toilets.jpg",
+//   },
+//   {
+//     id: 2,
+//     title: "Security Cabins",
+//     description: "Compact modular units for security personnel and checkpoints.",
+//     image: "/products/Security-Cabin.png",
+//   },
+//   {
+//     id: 3,
+//     title: "Modular Restrooms",
+//     description: "Prefabricated restroom facilities for commercial and public spaces.",
+//     image: "/products/modular-toilets.jpeg",
+//   },
+// ];
+
 
 const processSteps = [
   {
@@ -452,7 +454,7 @@ const processSteps = [
 
     <OfficeProducts />
 
-<section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
+{/* <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">
 
     <motion.div
@@ -533,9 +535,9 @@ const processSteps = [
     </div>
 
   </div>
-</section>
+</section> */}
 
-
+<ExtendedProducts />
     <OfficePortfolio />
 
 
@@ -640,7 +642,7 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/why-choose-final.jpg"
+        src="/products/office-final-final-1.png"
         alt="Why Choose Texo Prefab"
         fill
         className="object-fill group-hover:scale-105 transition duration-700"
