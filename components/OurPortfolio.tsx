@@ -40,7 +40,7 @@ const PORTFOLIO = [
   },
   {
     image: "/products/portfolio-5.jpeg",
-    hoverImage: "/products/portfolio-5.jpg",
+    hoverImage: "/products/portfolio-5.jpeg",
     area: "Ameenpur",
     size: "1100 sq.ft",
   },
