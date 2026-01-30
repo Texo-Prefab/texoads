@@ -12,54 +12,54 @@ const inter = Inter({ subsets: ["latin"] });
 const SITE_OFFICES = [
   {
     id: 1,
-    title: "Prefab Site Office – Model A",
+    title: "Prefab Site Office",
     description:
       "Factory-built site office cabins engineered for strength, insulation, and rapid installation.",
-    image: "/products/offices/prefabsiteoffice.png",
-    collection: "Office Solutions",
+    image: "/products/offices/EXT Toopran - 2,400 Sq.Ft .jpg",
+    collection: "Executive",
   },
   {
     id: 2,
-    title: "Prefab Site Office – Model B",
+    title: "Prefab Site Office",
     description:
       "Modular workspace units offering enhanced comfort for long-term project requirements.",
     image: "/products/offices/Prefab Site Office .jpg",
-    collection: "Office Solutions",
+    collection: "Custom",
   },
   {
     id: 3,
-    title: "Prefab Site Office – Model C",
+    title: "Prefab Site Office",
     description:
       "Premium site offices designed with superior finishes and optimized floor planning.",
     image: "/products/offices/siteoffice.jpg",
-    collection: "Office Solutions",
+    collection: "Standard",
   },
 ];
 
 const CONTAINER_OFFICES = [
-  {
+    {
     id: 4,
-    title: "Container Office – Standard",
+    title: "Container Office ",
     description:
       "Portable container offices converted into professional workspaces with modern interiors.",
-    image: "/products/offices/containeroffice.jpg",
-    collection: "Office Solutions",
+    image: "/products/offices/Portable Container Offices.png",
+    collection: "Standard",
   },
   {
     id: 5,
-    title: "Container Office – Executive",
+    title: "Container Office ",
     description:
-      "High-end container offices featuring insulation, paneling, and premium electrical layouts.",
-    image: "/products/offices/Portable Container Offices.png",
-    collection: "Office Solutions",
+      "High-end container offices featuring insulation, paneling, and premium electrical layouts. ",
+    image: "/products/offices/containeroffice.jpg",
+    collection: "Executive",
   },
   {
     id: 6,
-    title: "Container Office – Custom",
+    title: "Container Office ",
     description:
       "Fully customized container offices built as per operational and branding needs.",
     image: "/products/offices/container-3.png",
-    collection: "Office Solutions",
+    collection: "Custom",
   },
 ];
 

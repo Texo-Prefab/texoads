@@ -16,37 +16,37 @@ const inter = Inter({ subsets: ["latin"] });
 const PORTFOLIO = [
   {
     image: "/products/portfolio-1.jpg",
-    hoverImage: "/products/portfolio-1-hover.jpg",
+    hoverImage: "/products/portfolio-1.jpg",
     area: "Gajwel",
     size: "1200 sq.ft",
   },
   {
     image: "/products/portfolio-2.jpg",
-    hoverImage: "/products/portfolio-2-hover.jpg",
+    hoverImage: "/products/portfolio-2.jpg",
     area: "Kuntloor",
     size: "950 sq.ft",
   },
   {
     image: "/products/portfolio-3.jpg",
-    hoverImage: "/products/portfolio-3-hover.jpg",
+    hoverImage: "/products/portfolio-3.jpg",
     area: "Medchal",
     size: "1500 sq.ft",
   },
   {
     image: "/products/portfolio-4.jpg",
-    hoverImage: "/products/portfolio-4-hover.jpg",
+    hoverImage: "/products/portfolio-4.jpg",
     area: "Nizamabad",
     size: "1800 sq.ft",
   },
   {
     image: "/products/portfolio-5.jpeg",
-    hoverImage: "/products/portfolio-5-hover.jpg",
+    hoverImage: "/products/portfolio-5.jpg",
     area: "Ameenpur",
     size: "1100 sq.ft",
   },
   {
     image: "/products/Wooden House.jpg",
-    hoverImage: "/products/Wooden House-hover.jpg",
+    hoverImage: "/products/Wooden House.jpg",
     area: "Bangalore",
     size: "1400 sq.ft",
   },
@@ -105,26 +105,32 @@ export default function OurPortfolio() {
                 `}
               >
 
-                {/* DEFAULT IMAGE */}
-                <Image
-                  src={item.image}
-                  alt={item.area}
-                  fill
-                  className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-                />
+                {/* IMAGE WRAPPER */}
+<div className="absolute inset-0">
 
-                {/* HOVER IMAGE (desktop only) */}
-                <Image
-                  src={item.hoverImage}
-                  alt={item.area}
-                  fill
-                  className="
-                    object-cover opacity-0
-                    transition-opacity duration-500
-                    group-hover:opacity-100
-                    hidden md:block
-                  "
-                />
+  {/* DEFAULT IMAGE */}
+  <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
+    <Image
+      src={item.image}
+      alt={item.area}
+      fill
+      className="object-cover"
+    />
+  </div>
+
+  {/* HOVER IMAGE */}
+  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+    <Image
+      src={item.hoverImage}
+      alt={item.area}
+      fill
+      className="object-cover"
+    />
+  </div>
+
+</div>
+
+
 
                 {/* Overlay */}
                 <div

@@ -10,7 +10,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import SolutionsSection from '@/components/SolutionsSection';
-import OurPortfolio from '@/components/OfficePortfolio';
+import OurPortfolio from '@/components/OurPortfolio';
+import ExtendedProducts from '@/components/ExtendedProducts';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -166,26 +167,26 @@ const handleFormSubmit = async (
   const prevReview = () => {
     setReviewIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
-const extendedProducts = [
-  {
-    id: 1,
-    title: "Portable Toilets",
-    description: "Temporary sanitation solutions for construction sites and events.",
-    image: "/products/Potable-Toilets.jpg",
-  },
-  {
-    id: 2,
-    title: "Security Cabins",
-    description: "Compact modular units for security personnel and checkpoints.",
-    image: "/products/Security-Cabin.png",
-  },
-  {
-    id: 3,
-    title: "Modular Restrooms",
-    description: "Prefabricated restroom facilities for commercial and public spaces.",
-    image: "/products/modular-toilets.jpeg",
-  },
-];
+// const extendedProducts = [
+//   {
+//     id: 1,
+//     title: "Portable Toilets",
+//     description: "Temporary sanitation solutions for construction sites and events.",
+//     image: "/products/Potable-Toilets.jpg",
+//   },
+//   {
+//     id: 2,
+//     title: "Security Cabins",
+//     description: "Compact modular units for security personnel and checkpoints.",
+//     image: "/products/Security-Cabin.png",
+//   },
+//   {
+//     id: 3,
+//     title: "Modular Restrooms",
+//     description: "Prefabricated restroom facilities for commercial and public spaces.",
+//     image: "/products/modular-toilets.jpeg",
+//   },
+// ];
 
 const processSteps = [
   {
@@ -454,7 +455,7 @@ const processSteps = [
 
     <SolutionsSection />
 
-<section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
+{/* <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">
 
     <motion.div
@@ -535,7 +536,8 @@ const processSteps = [
     </div>
 
   </div>
-</section>
+</section> */}
+<ExtendedProducts />
 
 
     <OurPortfolio />
@@ -945,7 +947,7 @@ const processSteps = [
           </div>
           <div>
             <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Experience</p>
-            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={9} trigger={statsInView} />+</h3>
+            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={9} trigger={statsInView} />+ Years</h3>
           </div>
         </motion.div>
       </section>

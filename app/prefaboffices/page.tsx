@@ -88,38 +88,45 @@ const handleFormSubmit = async (
     }
   };
 
-  const faqs = [
-    {
-      id: 1,
-      question: "Can I customize my Prefab Site House ?",
-      answer: "Absolutely! Texo Prefab World Specializes in tailored solutions. From layout and finishes, we work with you to create a Farmhouse that meets your exact requirements, ensuring a comfortable, durable, and aesthetically elevated living space for luxurious weekend getaways or full-time residence."
-    },
-    {
-      id: 2,
-      question: "What amenities can I expect in a Farm House?",
-      answer: "At Texo Prefab World, our Farm Houses come equipped with essential features such as pre-installed electrical systems, thermal insulation, climate control, soundproofing, and premium flooring. Additional options include designer interiors, expansive decks, smart home features, modular kitchens, and premium bath fittings to enhance lifestyle and comfort."
-    },
-    {
-      id: 3,
-      question: "How do I maintain a Farm House?",
-      answer: "Farm Houses from Texo Prefab World are built with low-maintenance, high-quality materials. Routine upkeep includes inspecting electrical fittings, checking HVAC systems, and ensuring the structural integrity of walls and flooring. Our structures are designed for longevity, offering a hassle-free and refined living experience."
-    },
-    {
-      id: 4,
-      question: "What is the cost difference compared to traditional construction?",
-      answer: "Prefab homes typically cost 10-20% less than traditional construction while saving significant time and labor costs. The exact savings depend on your specific requirements and design choices."
-    },
-    {
-      id: 5,
-      question: "Are Farm Houses eco-friendly?",
-      answer: "Sustainability is a core value at Texo Prefab World. Our Farm Houses are designed with eco-friendly materials and energy-efficient systems. Features like PUF insulated walls, LED lighting, rainwater harvesting, and solar integration make them a luxurious yet environmentally responsible choice."
-    },
-    {
-      id: 6,
-      question: "Can prefab homes be relocated or expanded?",
-      answer: "Yes, one of the major advantages of modular construction is the ability to relocate or expand your structure in the future. Our designs are flexible and scalable to accommodate your changing needs."
-    }
-  ];
+ const faqs = [
+  {
+    id: 1,
+    question: "Can I customize my Prefab Site Office or Container Office?",
+    answer:
+      "Yes, absolutely. Texo Prefab World specializes in fully customizable prefab site offices and container offices. From internal layouts, cabin partitions, electrical planning, insulation, and exterior finishes, every unit can be tailored to suit your project requirements, workforce size, and operational needs."
+  },
+  {
+    id: 2,
+    question: "What amenities are included in prefab site offices?",
+    answer:
+      "Our prefab site offices come with pre-installed electrical wiring, LED lighting, power points, ventilation, insulation, doors, windows, and durable flooring. Optional upgrades include air conditioning, washrooms, pantry units, false ceilings, network cabling, and customized office furniture."
+  },
+  {
+    id: 3,
+    question: "Are container offices suitable for long-term use?",
+    answer:
+      "Yes. Our container offices are engineered for both temporary and long-term usage. With high-quality PUF insulation, weather-resistant coatings, and proper ventilation, they provide excellent thermal comfort and structural durability even in harsh site conditions."
+  },
+  {
+    id: 4,
+    question: "How cost-effective are prefab offices compared to traditional construction?",
+    answer:
+      "Prefab site offices and container offices typically cost 20–30% less than conventional construction while drastically reducing project timelines. Installation is fast, labor costs are lower, and there is minimal material wastage, making them a highly economical solution."
+  },
+  {
+    id: 5,
+    question: "Are prefab site offices weather-resistant?",
+    answer:
+      "Yes. Texo Prefab World offices are designed to withstand extreme weather conditions. They feature rust-resistant structures, insulated wall panels, leak-proof roofing, and protective exterior coatings suitable for Indian climate conditions."
+  },
+  {
+    id: 6,
+    question: "Can prefab offices be relocated or expanded later?",
+    answer:
+      "Absolutely. One of the biggest advantages of prefab and container offices is modular flexibility. Units can be relocated to new project sites, expanded with additional cabins, or reconfigured as your operational requirements evolve."
+  }
+];
+
 
   const reviews = [
     {
@@ -225,14 +232,14 @@ const processSteps = [
       <section className="relative min-h-screen w-full overflow-hidden">
 
       <Image
-        src="/hero.png"
+        src="/products/offices/prefabsiteoffice.png"
         alt="Luxury Farm Houses"
         fill
         priority
         className="object-cover"
       />
 
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/65" />
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -637,10 +644,10 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/office-final-final-1.png"
+        src="/whychoose-final.jpeg"
         alt="Why Choose Texo Prefab"
         fill
-        className="object-fill group-hover:scale-105 transition duration-700"
+        className="object-cover group-hover:scale-105 transition duration-700"
       />
       <div className="absolute inset-0 bg-linear-to-tr from-black/20 via-transparent to-transparent group-hover:from-black/30 transition duration-700" />
       <motion.div
@@ -885,35 +892,39 @@ const processSteps = [
   <div className="marquee flex gap-16 px-6">
     {[
       "/clients/int-1.webp",
-      "/clients/int-2.png",
+      "/clients/int-5.jpg",
       "/clients/int-3.png",
       "/clients/int-4.png",
       "/clients/int-6.png",
+      "/clients/int-8.png",
+      "/clients/int-10.png",
       "/clients/int-16.webp",
       "/clients/int-18.png",
       "/clients/int-19.png",
       "/clients/int-11.avif",
-      "/clients/int-13.jpeg",
-      "/clients/int-17.webp",
+      "/clients/int-22.png",
+      "/clients/int-7.png",
       "/clients/int-20.jpg",
-      "/clients/int-12.webp",
+      "/clients/int-21.webp",
 
       "/clients/int-1.webp",
-      "/clients/int-2.png",
+      "/clients/int-5.png",
       "/clients/int-3.png",
       "/clients/int-4.png",
       "/clients/int-6.png",
+      "/clients/int-8.png",
+      "/clients/int-10.png",
       "/clients/int-16.webp",
       "/clients/int-18.png",
       "/clients/int-19.png",
       "/clients/int-11.avif",
-      "/clients/int-13.jpeg",
-      "/clients/int-17.webp",
+      "/clients/int-22.jpeg",
+      "/clients/int-7.webp",
       "/clients/int-20.jpg",
-      "/clients/int-12.webp",
+      "/clients/int-21.webp",
 
     ].map((logo, i) => (
-      <div key={i} className="relative w-40 h-16 shrink-0">
+      <div key={i} className="relative w-44 h-22 shrink-0">
         <Image src={logo} alt="" fill className="object-contain" />
       </div>
     ))}
@@ -940,12 +951,11 @@ const processSteps = [
           </div>
           <div>
             <p className={`${inter.className} text-black/70 mt-2 text-2xl`}>Experience</p>
-            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={9} trigger={statsInView} />+</h3>
+            <h3 className={`${playfair.className} text-6xl font-bold text-[#886c46]`}><CountUpNumber end={9} trigger={statsInView} />+ Years</h3>
           </div>
         </motion.div>
       </section>
 
-      {/* ================= CUSTOMER REVIEWS ================= */}
       <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
         <div className="max-w-7xl mx-auto px-6">
           

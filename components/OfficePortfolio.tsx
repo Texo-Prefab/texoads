@@ -16,43 +16,43 @@ const inter = Inter({ subsets: ["latin"] });
 const PORTFOLIO = [
   {
     image: "/products/potfolio-1.jpg",
-    hoverImage: "/products/potfolio-1-hover.jpg",
-    name: "Gajwel",
-    area: "1,250 sq.ft",
+    hoverImage: "/products/offices/EXT - KamaReddy - 1920 sqft.jpg",
+    name: "KamaReddy",
+    area: "1,920 sq.ft",
   },
   {
     image: "/products/portfolio-2.jpg",
-    hoverImage: "/products/portfolio-2-hover.jpg",
-    name: "Kuntloor",
-    area: "980 sq.ft",
+    hoverImage: "/products/offices/EXT Toopran - 2,400 Sq.Ft .jpg",
+    name: "Toopran",
+    area: "2,400 sq.ft",
   },
   {
     image: "/products/portfolio-3.jpg",
-    hoverImage: "/products/portfolio-3-hover.jpg",
-    name: "Medchal",
-    area: "1,400 sq.ft",
+    hoverImage: "/products/offices/EXT. 1 Siddipet- 1440 Sqft .png",
+    name: "Siddipet",
+    area: "1,440 sq.ft",
   },
   {
     image: "/products/portfolio-4.jpg",
-    hoverImage: "/products/portfolio-4-hover.jpg",
-    name: "Nizamabad",
-    area: "1,100 sq.ft",
+    hoverImage: "/products/offices/INT 2. - Texo Custumer lounge Jeedimetla - 960 sqft.jpg",
+    name: "Jeedimetla",
+    area: "960 sq.ft",
   },
   {
     image: "/products/portfolio-5.jpeg",
-    hoverImage: "/products/portfolio-5-hover.jpeg",
-    name: "Ameenpur",
-    area: "1,300 sq.ft",
+    hoverImage: "/products/offices/INT 3. Digwal  - 890 SQFT .jpg",
+    name: "Nizamabad",
+    area: "1,440 sq.ft",
   },
   {
     image: "/products/Wooden House.jpg",
-    hoverImage: "/products/Wooden House-hover.jpg",
-    name: "Bangalore",
-    area: "1,600 sq.ft",
+    hoverImage: "/products/offices/INT. 3 Nizamabad - 1440 SQft .jpg",
+    name: "Digwal",
+    area: "890 sq.ft",
   },
 ];
 
-export default function OurPortfolio() {
+export default function OfficePortfolio() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({

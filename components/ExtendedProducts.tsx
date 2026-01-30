@@ -14,26 +14,26 @@ const inter = Inter({ subsets: ['latin'] });
 const securityCabins = [
   {
     id: 1,
-    title: 'Security Cabin – Model A',
+    title: 'MS Security Cabin',
     description:
       'Compact modular cabin ideal for entry gates and security checkpoints.',
-    image: '/products/Security-Cabin.png',
+    image: '/products/offices/securit-ms-cabin.webp',
     badge: 'BEST SELLER',
   },
   {
     id: 2,
-    title: 'Security Cabin – Model B',
+    title: 'ACP Security Cabin',
     description:
       'Insulated premium security cabin with lighting and ventilation.',
-    image: '/products/Security-Cabin-2.png',
+    image: '/products/offices/security-acp-cabin.webp',
     badge: 'PREMIUM COLLECTION',
   },
   {
     id: 3,
-    title: 'Security Cabin – Model C',
+    title: 'PUF Security Cabin',
     description:
       'Fully customizable security cabins built as per site requirement.',
-    image: '/products/Security-Cabin-3.png',
+    image: '/products/offices/security-puf-cabin.webp',
     badge: 'CUSTOM BUILD',
   },
 ];
@@ -135,7 +135,7 @@ function ProductCard({ product, idx }: any) {
           fill
           className="object-cover group-hover:scale-110 transition duration-700"
         />
-        <div className="absolute inset-0 bg-linear-to-br from-black/10 via-black/30 to-black/60 group-hover:to-black/90 transition duration-700" />
+        <div className="absolute inset-0 bg-linear-to-br from-black/30 via-black/50 to-black/70 group-hover:to-black/90 transition duration-700" />
       </div>
 
       {/* CONTENT */}
