@@ -10,6 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 const SITE_OFFICES = [
+    {
+    id: 3,
+    title: "Prefab Site Office",
+    description:
+      "Premium site offices designed with superior finishes and optimized floor planning.",
+    image: "/products/offices/siteoffice.jpg",
+    collection: "Standard",
+  },
   {
     id: 1,
     title: "Prefab Site Office",
@@ -25,14 +33,6 @@ const SITE_OFFICES = [
       "Modular workspace units offering enhanced comfort for long-term project requirements.",
     image: "/products/offices/Prefab Site Office .jpg",
     collection: "Custom",
-  },
-  {
-    id: 3,
-    title: "Prefab Site Office",
-    description:
-      "Premium site offices designed with superior finishes and optimized floor planning.",
-    image: "/products/offices/siteoffice.jpg",
-    collection: "Standard",
   },
 ];
 
