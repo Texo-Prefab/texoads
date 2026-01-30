@@ -28,7 +28,7 @@ export default function Home() {
     <div className="relative min-h-screen w-full overflow-hidden">
 
       <Image
-        src="/bg.jpg" 
+        src="/hero.png" 
         alt="Texo Prefab"
         fill
         priority

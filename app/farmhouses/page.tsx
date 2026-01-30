@@ -9,6 +9,8 @@ import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
 import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
+
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -54,38 +56,48 @@ export default function FarmHouses() {
   const [contactFormData, setContactFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
   const [contactFormLoading, setContactFormLoading] = useState(false);
   const [contactFormSuccess, setContactFormSuccess] = useState(false);
+const router = useRouter();
 
   const handleFormSubmit = async (
-    e: React.FormEvent<HTMLFormElement>,
-    formData: typeof heroFormData,
-    setLoading: (loading: boolean) => void,
-    setSuccess: (success: boolean) => void,
-    setFormData: (data: typeof heroFormData) => void
-  ) => {
-    e.preventDefault();
-    setLoading(true);
+  e: React.FormEvent<HTMLFormElement>,
+  formData: typeof heroFormData,
+  setLoading: (loading: boolean) => void,
+  setSuccess: (success: boolean) => void,
+  setFormData: (data: typeof heroFormData) => void
+) => {
+  e.preventDefault();
+  setLoading(true);
 
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+  try {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      setSuccess(true);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        budgetRange: '',
+        projectType: '',
+        source: 'Farmhouses',
       });
 
-      if (response.ok) {
-        setSuccess(true);
-        setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
-        setTimeout(() => setSuccess(false), 10000); // Hide message after 10 seconds
-      } else {
-        alert('Failed to send the form. Please try again.');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      alert('An error occurred. Please try again.');
-    } finally {
-      setLoading(false);
+      router.replace("/thankyou");
+    } else {
+      alert('Failed to send the form. Please try again.');
     }
-  };
+  } catch (error) {
+    console.error('Form submission error:', error);
+    alert('An error occurred. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const faqs = [
     {
@@ -367,29 +379,20 @@ const processSteps = [
                 Schedule a Project Discussion
             </h3>
 
-            {heroFormSuccess ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
-              >
-                <h3 className="text-white text-2xl font-bold text-center">
-                  Thank you!
-                </h3>
-                <p className="text-white/90 text-center text-2xl font-semibold">
-                  Your Dream Project Awaits.
-                </p>
-                <div className="space-y-3 w-full">
-                  <p className="text-white/80 text-center text-xs leading-relaxed">
-                    Choose a time now or talk to a concierge on <span className="font-semibold">WhatsApp</span>
-                  </p>
-                  <p className="text-white/70 text-center text-xs italic">
-                    We reply in &lt; 15 Minutes (Mon-Sat, 10am-7pm IST)
-                  </p>
-                </div>
-              </motion.div>
-            ) : (
-              <form onSubmit={(e) => handleFormSubmit(e, heroFormData, setHeroFormLoading, setHeroFormSuccess, setHeroFormData)} className={`${inter.className} space-y-3`}>
+            
+              <form
+  onSubmit={(e) =>
+    handleFormSubmit(
+      e,
+      heroFormData,
+      setHeroFormLoading,
+      setHeroFormSuccess,
+      setHeroFormData
+    )
+  }
+  className={`${inter.className} space-y-3`}
+>
+
 
                 <input
                   type="text"
@@ -458,7 +461,6 @@ const processSteps = [
                 </button>
 
               </form>
-            )}
         </motion.div>
 
 
@@ -1218,69 +1220,59 @@ const processSteps = [
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-[#111110] backdrop-blur rounded-2xl p-6 shadow-4xl shadow-white/10 border border-white/10 max-w-md ml-auto"
             >
             <h3 className={`${playfair.className} text-white text-xl mb-5`}>
-                Schedula a Project Discussion
+                Schedule a Project Discussion
             </h3>
 
-            {contactFormSuccess ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-8 px-4 space-y-4"
-              >
-                <h3 className="text-white text-2xl font-bold text-center">
-                  Thank you!
-                </h3>
-                <p className="text-white/90 text-center text-2xl font-semibold">
-                  Your Dream Project Awaits.
-                </p>
-                <div className="space-y-3 w-full">
-                  <p className="text-white/80 text-center text-xs leading-relaxed">
-                    Choose a time now or talk to a concierge on <span className="font-semibold">WhatsApp</span>
-                  </p>
-                  <p className="text-white/70 text-center text-xs italic">
-                    We reply within 15 Minutes (Mon-Sat, 10am-7pm IST)
-                  </p>
-                </div>
-              </motion.div>
-            ) : (
-              <form onSubmit={(e) => handleFormSubmit(e, contactFormData, setContactFormLoading, setContactFormSuccess, setContactFormData)} className={`${inter.className} space-y-3`}>
+            
+              <form
+  onSubmit={(e) =>
+    handleFormSubmit(
+      e,
+      heroFormData,
+      setHeroFormLoading,
+      setHeroFormSuccess,
+      setHeroFormData
+    )
+  }
+  className={`${inter.className} space-y-3`}
+>
+
 
                 <input
                   type="text"
                   required
-                  value={contactFormData.name}
-                  onChange={(e) => setContactFormData({ ...contactFormData, name: e.target.value })}
+                  value={heroFormData.name}
+                  onChange={(e) => setHeroFormData({ ...heroFormData, name: e.target.value })}
                   className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
                   placeholder="Full Name"
                 />
 
                 <input
-                  type="tel"
+                  type="number"
                   required
-                  value={contactFormData.phone}
-                  onChange={(e) => setContactFormData({ ...contactFormData, phone: e.target.value })}
+                  value={heroFormData.phone}
+                  onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
                   className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
                   placeholder="Phone Number"
                 />
 
                 <input
                   type="email"
-                  value={contactFormData.email}
-                  onChange={(e) => setContactFormData({ ...contactFormData, email: e.target.value })}
+                  value={heroFormData.email}
+                  onChange={(e) => setHeroFormData({ ...heroFormData, email: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
                   placeholder="Email Address"
                 />
 
                 <select
-                  value={contactFormData.budgetRange}
+                  value={heroFormData.budgetRange}
                   required
-                  onChange={(e) => setContactFormData({ ...contactFormData, budgetRange: e.target.value })}
+                  onChange={(e) => setHeroFormData({ ...heroFormData, budgetRange: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Budget Range</option>
@@ -1291,9 +1283,9 @@ const processSteps = [
                 </select>
 
                 <select
-                  value={contactFormData.projectType}
+                  value={heroFormData.projectType}
                   required
-                  onChange={(e) => setContactFormData({ ...contactFormData, projectType: e.target.value })}
+                  onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Project Type</option>
@@ -1311,14 +1303,13 @@ const processSteps = [
 
                 <button
                   type="submit"
-                  disabled={contactFormLoading}
+                  disabled={heroFormLoading}
                   className="w-full mt-3 bg-[#886c46] my-4 text-black py-2.5 rounded-2xl text-sm font-medium hover:bg-zinc-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {contactFormLoading ? 'Sending...' : 'Request Callback'}
+                  {heroFormLoading ? 'Sending...' : 'Request Callback'}
                 </button>
 
               </form>
-            )}
         </motion.div>
         </div>
       </section>
