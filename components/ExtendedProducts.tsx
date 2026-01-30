@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 const securityCabins = [
   {
     id: 1,
-    title: 'Security Cabin – Standard',
+    title: 'Security Cabin – Model A',
     description:
       'Compact modular cabin ideal for entry gates and security checkpoints.',
     image: '/products/Security-Cabin.png',
@@ -22,7 +22,7 @@ const securityCabins = [
   },
   {
     id: 2,
-    title: 'Security Cabin – Premium',
+    title: 'Security Cabin – Model B',
     description:
       'Insulated premium security cabin with lighting and ventilation.',
     image: '/products/Security-Cabin-2.png',
@@ -30,7 +30,7 @@ const securityCabins = [
   },
   {
     id: 3,
-    title: 'Security Cabin – Custom',
+    title: 'Security Cabin – Model C',
     description:
       'Fully customizable security cabins built as per site requirement.',
     image: '/products/Security-Cabin-3.png',
