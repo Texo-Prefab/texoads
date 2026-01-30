@@ -82,7 +82,7 @@ const ProductCard = ({
     whileInView={{ opacity: 1 }}
     viewport={{ once: false }}
     transition={{
-      duration: 0.9,
+      duration: 0.2,
       delay: delay * 0.1,
       ease: [0.16, 1, 0.3, 1],
     }}

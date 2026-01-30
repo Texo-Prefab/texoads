@@ -1201,10 +1201,10 @@ const processSteps = [
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 text-white">
           <div className="flex flex-col justify-center space-y-6">
             <h2 className={`${playfair.className} text-4xl md:text-6xl font-semibold leading-tight`}>
-              Ready to Build Your Dream Home?
+              Modern Offices. Predictable Timelines.
             </h2>
             <p className={`${inter.className} text-white/80 text-lg leading-relaxed max-w-xl`}>
-              Take the first step towards your perfect prefab home. Our team is ready to understand your vision and deliver excellence.
+              Factory-built prefab office spaces with plug-and-play interiors, delivered on schedule — without site delays or cost overruns.
             </p>
           </div>
 
