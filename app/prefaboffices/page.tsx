@@ -424,13 +424,8 @@ const processSteps = [
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Project Type</option>
-                  <option>A-Frame</option>
-                  <option>Wooden House</option>
-                  <option>Arc Pod</option>
-                  <option>Farmhouse</option>
-                  <option>Barn House</option>
-                  <option>Container House</option>
-                  <option>Prefab Home</option>
+                  <option>Prefab Site Offices</option>
+                  <option>Container Offices</option>
                   <option>Portable Toilets</option>
                   <option>Security Cabins</option>
                   <option>Modular Restrooms</option>
@@ -1270,13 +1265,8 @@ const processSteps = [
                   className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                 >
                   <option value="">Select Project Type</option>
-                  <option>A-Frame</option>
-                  <option>Wooden House</option>
-                  <option>Arc Pod</option>
-                  <option>Farmhouse</option>
-                  <option>Barn House</option>
-                  <option>Container House</option>
-                  <option>Prefab Home</option>
+                  <option>Prefab Site Offices</option>
+                  <option>Container Offices</option>
                   <option>Portable Toilets</option>
                   <option>Security Cabins</option>
                   <option>Modular Restrooms</option>
