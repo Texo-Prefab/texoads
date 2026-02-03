@@ -31,7 +31,7 @@ const SITE_OFFICES = [
     title: "Prefab Site Office",
     description:
       "Modular workspace units offering enhanced comfort for long-term project requirements.",
-    image: "/products/siteoffice-2.webp",
+    image: "/siteoffice-2.webp",
     collection: "Custom",
   },
 ];
