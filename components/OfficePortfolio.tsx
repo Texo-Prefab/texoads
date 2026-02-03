@@ -33,14 +33,14 @@ const PORTFOLIO = [
     area: "1,440 sq.ft",
   },
   {
-    image: "/products/offices/INT. 3 Nizamabad - 1440 SQft .jpg",
-    hoverImage: "/products/nizamabad.jpg",
+    image: "/nizamabad.jpg",
+    hoverImage: "/nizamabad.jpg",
     name: "Nizamabad",
     area: "1,440 sq.ft",
   },
   {
-    image: "/products/offices/INT 2. - Texo Custumer lounge Jeedimetla - 960 sqft.jpg",
-    hoverImage: "/products/jeedimetla.jpg",
+    image: "/jeedimetla.jpg",
+    hoverImage: "/jeedimetla.jpg",
     name: "Jeedimetla",
     area: "960 sq.ft",
   },
