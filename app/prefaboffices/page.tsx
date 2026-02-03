@@ -644,7 +644,7 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/whychoose-final.jpeg"
+        src="/whyusreplace.webp"
         alt="Why Choose Texo Prefab"
         fill
         className="object-cover group-hover:scale-105 transition duration-700"
