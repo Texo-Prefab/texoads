@@ -169,12 +169,6 @@ const handleFormSubmit = async (
   };
 // const extendedProducts = [
 //   {
-//     id: 1,
-//     title: "Portable Toilets",
-//     description: "Temporary sanitation solutions for construction sites and events.",
-//     image: "/products/Potable-Toilets.jpg",
-//   },
-//   {
 //     id: 2,
 //     title: "Security Cabins",
 //     description: "Compact modular units for security personnel and checkpoints.",
