@@ -14,28 +14,28 @@ const products = [
     title: "Barn House",
     description: "High-ceiling homes inspired by traditional barn designs.",
     image: "/products/Barn House.png",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   {
     id: 2,
     title: "Arc Pod",
     description: "Curved modular units used for premium stays and cafes.",
     image: "/products/arc-pod.jpg",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   {
     id: 3,
     title: "A Frame",
     description: "Triangular prefab structures ideal for resorts and weekend homes.",
     image: "/products/A frame.png",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   {
     id: 4,
     title: "Wooden House",
     description: "Engineered steel structures with wooden finishes.",
     image: "/products/Wooden House.jpg",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   
   {
@@ -43,7 +43,7 @@ const products = [
     title: "Prefab Homes",
     description: "Factory-built homes assembled on-site quickly.",
     image: "/products/Prefab-Homes.png",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   
   
@@ -52,14 +52,14 @@ const products = [
     title: "Container Homes",
     description: "Habitable spaces created from shipping containers.",
     image: "/products/Container-home-1.png",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   {
     id: 7,
     title: "Farmhouse",
     description: "Standalone homes built for farmland and open plots.",
     image: "/products/Farmhouses.png",
-    collection: "Office Solutions",
+    collection: "Premium Collection",
   },
   
 ];
