@@ -16,13 +16,7 @@ const inter = Inter({
 });
 
 export default function Home() {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.location.href = 'https://texoprefab.com';
-    }, 4500);
-
-    return () => clearTimeout(timer);
-  }, []);
+  
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">

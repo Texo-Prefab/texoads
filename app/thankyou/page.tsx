@@ -5,11 +5,18 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Playfair_Display, Inter } from "next/font/google";
+import { useEffect } from "react";
 
 const playfair = Playfair_Display({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: "form_submission_success"
+    });
+  }, []);
   return (
     <section className="relative min-h-screen overflow-hidden">
 
