@@ -75,7 +75,7 @@ const handleFormSubmit = async (
 
       if (response.ok) {
         setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source: 'Offices' });
-        router.replace("/thankyou");
+        router.replace("/thankyou-farmhouse");
         
       } else {
         alert('Failed to send the form. Please try again.');
