@@ -42,7 +42,7 @@ const products = [
     id: 5,
     title: "Prefab Homes",
     description: "Factory-built homes assembled on-site quickly.",
-    image: "/products/Prefab-Homes.png",
+    image: "/products/Prefab-Homes.jpg",
     collection: "Premium Collection",
   },
   

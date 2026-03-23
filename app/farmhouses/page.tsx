@@ -218,7 +218,7 @@ const processSteps = [
       <section className="relative min-h-screen w-full overflow-hidden">
 
       <Image
-        src="/hero.png"
+        src="/hero.jpg"
         alt="Luxury Farm Houses"
         fill
         priority
@@ -1182,7 +1182,7 @@ const processSteps = [
 
       <section className="relative py-32">
         <Image
-          src="/hero.png"
+          src="/hero.jpg"
           alt="Contact"
           fill
           className="object-cover"
