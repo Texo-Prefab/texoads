@@ -23,7 +23,7 @@ const SITE_OFFICES = [
     title: "Prefab Site Office",
     description:
       "Factory-built site office cabins engineered for strength, insulation, and rapid installation.",
-    image: "/products/offices/EXT Toopran - 2,400 Sq.Ft .jpg",
+    image: "/products/offices/EXT Toopran - 2,400 Sq.Ft.jpg",
     collection: "Executive",
   },
   {
@@ -42,7 +42,7 @@ const CONTAINER_OFFICES = [
     title: "Container Office ",
     description:
       "Portable container offices converted into professional workspaces with modern interiors.",
-    image: "/products/offices/Portable Container Offices.png",
+    image: "/products/offices/Portable Container Offices.jpg",
     collection: "Standard",
   },
   {
@@ -58,7 +58,7 @@ const CONTAINER_OFFICES = [
     title: "Container Office ",
     description:
       "Fully customized container offices built as per operational and branding needs.",
-    image: "/products/offices/container-3.png",
+    image: "/products/offices/container-3.jpg",
     collection: "Custom",
   },
 ];

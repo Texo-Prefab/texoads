@@ -21,8 +21,8 @@ const PORTFOLIO = [
     area: "1,920 sq.ft",
   },
   {
-    image: "/products/offices/EXT Toopran - 2,400 Sq.Ft .jpg",
-    hoverImage: "/products/offices/EXT Toopran - 2,400 Sq.Ft .jpg",
+    image: "/products/offices/EXT Toopran - 2,400 Sq.Ft.jpg",
+    hoverImage: "/products/offices/EXT Toopran - 2,400 Sq.Ft.jpg",
     name: "Toopran",
     area: "2,400 sq.ft",
   },
