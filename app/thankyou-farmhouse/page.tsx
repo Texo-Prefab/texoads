@@ -21,7 +21,7 @@ export default function ThankYouFarhousePage() {
     <section className="relative min-h-screen overflow-hidden">
 
       <Image
-        src="/hero.png"
+        src="/hero.jpg"
         alt="Thank you"
         fill
         priority
