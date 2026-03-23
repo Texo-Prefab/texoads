@@ -13,7 +13,7 @@ const products = [
     id: 1,
     title: "Barn House",
     description: "High-ceiling homes inspired by traditional barn designs.",
-    image: "/products/Barn House.png",
+    image: "/products/Barn House.jpg",
     collection: "Premium Collection",
   },
   {
@@ -51,14 +51,14 @@ const products = [
     id: 6,
     title: "Container Homes",
     description: "Habitable spaces created from shipping containers.",
-    image: "/products/Container-home-1.png",
+    image: "/products/Container-home-1.jpg",
     collection: "Premium Collection",
   },
   {
     id: 7,
     title: "Farmhouse",
     description: "Standalone homes built for farmland and open plots.",
-    image: "/products/Farmhouses.png",
+    image: "/products/Farmhouses.jpg",
     collection: "Premium Collection",
   },
   

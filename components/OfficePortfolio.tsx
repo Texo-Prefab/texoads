@@ -27,8 +27,8 @@ const PORTFOLIO = [
     area: "2,400 sq.ft",
   },
   {
-    image: "/products/offices/EXT. 1 Siddipet- 1440 Sqft .png",
-    hoverImage: "/products/offices/EXT. 1 Siddipet- 1440 Sqft .png",
+    image: "/products/offices/EXT. 1 Siddipet- 1440 Sqft.jpg",
+    hoverImage: "/products/offices/EXT. 1 Siddipet- 1440 Sqft.jpg",
     name: "Siddipet",
     area: "1,440 sq.ft",
   },

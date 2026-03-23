@@ -213,7 +213,7 @@ const processSteps = [
     id: 3,
     title: "Day-14/30: Factory Manufacturing",
     icon: Factory,
-    image: "/products/factory manufacturing.png",
+    image: "/products/factory manufacturing.jpg",
   },
   {
     id: 4,
@@ -908,7 +908,7 @@ const processSteps = [
       "/clients/int-21.webp",
 
       "/clients/int-1.webp",
-      "/clients/int-5.png",
+      "/clients/int-5.jpg",
       "/clients/int-3.png",
       "/clients/int-4.png",
       "/clients/int-6.png",

@@ -47,7 +47,7 @@ const inter = Inter({
   weight: ['400', '500'],
 });
 
-export default function PrefabOffices() {
+export default function Farmhouses() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -199,7 +199,7 @@ const processSteps = [
     id: 3,
     title: "Day-14/30: Factory Manufacturing",
     icon: Factory,
-    image: "/products/factory manufacturing.png",
+    image: "/products/factory manufacturing.jpg",
   },
   {
     id: 4,
@@ -638,7 +638,7 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/office-final-final-1.png"
+        src="/products/office-final-final-1.jpg"
         alt="Why Choose Texo Prefab"
         fill
         className="object-fill group-hover:scale-105 transition duration-700"
