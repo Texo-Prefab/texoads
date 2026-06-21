@@ -146,22 +146,7 @@ export default function OfficePortfolio() {
                     fill
                     className="
                       object-cover
-                      transition-opacity duration-500
-                      group-hover:opacity-0
-                    "
-                  />
-
-                  {/* HOVER IMAGE (DESKTOP ONLY) */}
-                  <Image
-                    src={item.hoverImage}
-                    alt={item.name}
-                    fill
-                    className="
-                      object-cover
-                      opacity-0
-                      transition-opacity duration-500
-                      group-hover:opacity-100
-                      hidden md:block
+                      
                     "
                   />
                 </div>
