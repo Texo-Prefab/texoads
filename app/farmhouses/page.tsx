@@ -406,7 +406,6 @@ const processSteps = [
                           className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                         >
                           <option value="">Select Budget Range</option>
-                          <option>₹3 - 5 Lakhs</option>
                           <option>₹5 - 8 Lakhs</option>
                           <option>₹12 - 15 Lakhs</option>
                           <option>₹20L - 1Cr+</option>
@@ -1253,7 +1252,6 @@ const processSteps = [
                             className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
                           >
                             <option value="">Select Budget Range</option>
-                            <option>₹3 - 5 Lakhs</option>
                             <option>₹5 - 8 Lakhs</option>
                             <option>₹12 - 15 Lakhs</option>
                             <option>₹20L - 1Cr+</option>
