@@ -5,7 +5,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
-import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -54,6 +54,17 @@ export default function Farmhouses() {
   const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
 const router = useRouter();
+
+const handlePhoneClick = () => {
+  void fetch('/api/track-phone-click', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ source: 'Farmhouses' }),
+    keepalive: true,
+  }).catch((error) => {
+    console.error('Phone click tracking request failed:', error);
+  });
+};
 
 const handleFormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
@@ -382,14 +393,20 @@ const processSteps = [
                           placeholder="Full Name"
                         />
         
-                        <input
-                          type="number"
-                          required
-                          value={heroFormData.phone}
-                          onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
-                          className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                          placeholder="Phone Number"
-                        />
+                        <div className="flex items-center my-4 bg-white border border-white/20 rounded-2xl text-black">
+                          <span className="px-3 text-sm font-medium">+91</span>
+                          <input
+                            type="tel"
+                            inputMode="numeric"
+                            required
+                            maxLength={10}
+                            pattern="[0-9]{10}"
+                            value={heroFormData.phone}
+                            onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                            className="w-full bg-transparent px-3 py-2.5 text-sm placeholder:text-black/80 focus:outline-none"
+                            placeholder="Phone Number"
+                          />
+                        </div>
         
                         <input
                           type="email"
@@ -1229,14 +1246,20 @@ const processSteps = [
                             placeholder="Full Name"
                           />
           
-                          <input
-                            type="number"
-                            required
-                            value={heroFormData.phone}
-                            onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value })}
-                            className="w-full border my-4 bg-white border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
-                            placeholder="Phone Number"
-                          />
+                          <div className="flex items-center my-4 bg-white border border-white/20 rounded-2xl text-black">
+                            <span className="px-3 text-sm font-medium">+91</span>
+                            <input
+                              type="tel"
+                              inputMode="numeric"
+                              required
+                              maxLength={10}
+                              pattern="[0-9]{10}"
+                              value={heroFormData.phone}
+                              onChange={(e) => setHeroFormData({ ...heroFormData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                              className="w-full bg-transparent px-3 py-2.5 text-sm placeholder:text-black/80 focus:outline-none"
+                              placeholder="Phone Number"
+                            />
+                          </div>
           
                           <input
                             type="email"
@@ -1503,7 +1526,7 @@ const processSteps = [
         </motion.div>
       </footer>
 
-      <motion.a
+      {/* <motion.a
         href="https://wa.me/919000800665"
         target="_blank"
         rel="noopener noreferrer"
@@ -1515,10 +1538,11 @@ const processSteps = [
         className="fixed bottom-8 left-8 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300"
       >
         <MessageCircle className="w-6 h-6" />
-      </motion.a>
+      </motion.a> */}
 
       <motion.a
-        href="tel:+919000800665"
+        href="tel:+919989292514"
+        onClick={handlePhoneClick}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3 }}
