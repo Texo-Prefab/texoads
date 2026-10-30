@@ -24,7 +24,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Office",
     area: "2,400 sq.ft",
-    days: "55 days",
+    days: "59 days",
   },
   {
     image: "/products/offices/EXT. 1 Siddipet- 1440 Sqft.jpg",
@@ -32,7 +32,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Cabin",
     area: "1,440 sq.ft",
-    days: "40 days",
+    days: "43 days",
   },
   {
     image: "/nizamabad.jpg",
@@ -40,7 +40,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Office",
     area: "1,440 sq.ft",
-    days: "40 days",
+    days: "32 days",
   },
   {
     image: "/jeedimetla.jpg",
@@ -48,7 +48,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Cabin",
     area: "960 sq.ft",
-    days: "30 days",
+    days: "28 days",
   },
   {
     image: "/products/offices/INT 3. Digwal  - 890 SQFT .jpg",
@@ -56,7 +56,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Office Interior",
     area: "890 sq.ft",
-    days: "25 days",
+    days: "35 days",
   },
 ];
 
@@ -136,11 +136,11 @@ export default function OfficePortfolio() {
                 />
 
                 {/* Type pill */}
-                <span
+                {/* <span
                   className={`${inter.className} absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black shadow-md backdrop-blur-sm`}
                 >
                   {item.type}
-                </span>
+                </span> */}
               </div>
 
               {/* Body */}

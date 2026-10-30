@@ -109,7 +109,7 @@ function ProductCard({
         </p>
 
         <div className="mt-auto">
-          <div className="mb-4 border-t border-black/10 pt-4">
+          {/* <div className="mb-4 border-t border-black/10 pt-4">
             <p className={`${inter.className} text-sm text-zinc-500`}>
               Starting at{" "}
               <span className="text-lg font-bold text-black">
@@ -117,7 +117,7 @@ function ProductCard({
               </span>{" "}
               / sq.ft
             </p>
-          </div>
+          </div> */}
 
           <button
             type="button"
@@ -164,7 +164,7 @@ export default function SolutionsSection({ onQuoteClick }: { onQuoteClick: () =>
           Discover our premium collection of architecturally designed prefab solutions, each crafted to perfection
         </p>
 
-        {/* <motion.div
+        <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -177,7 +177,7 @@ export default function SolutionsSection({ onQuoteClick }: { onQuoteClick: () =>
               <CountUp start={0} end={2500} decimals={0} duration={1.6} /> per sq.ft
             </span>
           </p>
-        </motion.div> */}
+        </motion.div>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

@@ -24,7 +24,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Home",
     size: "950 sq.ft",
-    days: "35 days",
+    days: "37 days",
   },
   {
     image: "/products/portfolio-3.jpg",
@@ -32,7 +32,7 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Farmhouse",
     size: "1,500 sq.ft",
-    days: "50 days",
+    days: "53 days",
   },
   {
     image: "/products/portfolio-4.jpg",
@@ -40,15 +40,15 @@ const PORTFOLIO = [
     state: "Telangana",
     type: "Prefab Home",
     size: "1,800 sq.ft",
-    days: "60 days",
+    days: "57 days",
   },
   {
     image: "/products/portfolio-5.jpeg",
     area: "Ameenpur",
     state: "Telangana",
     type: "Prefab Villa",
-    size: "1,100 sq.ft",
-    days: "40 days",
+    size: "720 sq.ft",
+    days: "22 days",
   },
   {
     image: "/products/Wooden House.jpg",
@@ -111,11 +111,11 @@ export default function OurPortfolio() {
                 />
 
                 {/* Home type pill */}
-                <span
+                {/* <span
                   className={`${inter.className} absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black shadow-md backdrop-blur-sm`}
                 >
                   {item.type}
-                </span>
+                </span> */}
               </div>
 
               {/* Body */}

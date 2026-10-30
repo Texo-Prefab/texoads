@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Playfair_Display, Inter } from 'next/font/google';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
 import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, HardHat, Trophy, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from 'lucide-react';
@@ -229,47 +229,57 @@ const processSteps = [
   return (
     <main className="w-full bg-white text-black overflow-hidden">
       <button
-        type="button"
-        onClick={openQuoteModal}
-        className="fixed inset-x-0 bottom-0 z-40 flex w-full items-center justify-center rounded-none bg-[#886c46] px-5 py-3.5 text-sm font-semibold text-black shadow-xl transition hover:bg-[#d7a661] focus:outline-none focus:ring-2 focus:ring-[#886c46] focus:ring-offset-2 sm:inset-x-auto sm:bottom-7 sm:right-7 sm:w-auto sm:rounded-full sm:px-5 sm:py-3"
-      >
-        Get a Quote
-      </button>
+  type="button"
+  onClick={openQuoteModal}
+  className="fixed inset-x-0 bottom-0 z-40 flex w-full items-center justify-center rounded-none bg-[#886c46] px-5 py-3.5 text-md font-semibold text-white shadow-xl transition hover:bg-[#d7a661] focus:outline-none focus:ring-2 focus:ring-[#886c46] focus:ring-offset-2 sm:inset-x-auto sm:bottom-auto sm:left-0 sm:top-3/4 sm:w-auto sm:-translate-y-1/2  sm:rounded-l-none sm:[writing-mode:vertical-rl] sm:px-2 sm:rounded-2xl sm:py-2"
+>
+  Get a Quote
+</button>
 
-      {isQuoteModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6"
-          onClick={() => setIsQuoteModalOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Get a quote"
-        >
-          <div
-            className="relative max-h-[calc(100vh-3rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-[#111110] p-6 shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
+      <AnimatePresence>
+        {isQuoteModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6"
+            onClick={() => setIsQuoteModalOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Get a quote"
           >
-            <button
-              type="button"
-              onClick={() => setIsQuoteModalOpen(false)}
-              className="absolute right-4 top-4 rounded-full p-1 text-white/80 transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#d7a661]"
-              aria-label="Close quote form"
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.97 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative max-h-[calc(100vh-3rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-[#111110] p-6 shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
             >
-              <X size={22} />
-            </button>
-            <h2 className={`${playfair.className} mb-5 pr-8 text-xl text-white`}>
-              Schedule a Project Discussion
-            </h2>
-            <FarmhouseQuoteForm
-              formData={heroFormData}
-              loading={heroFormLoading}
-              onChange={setHeroFormData}
-              onSubmit={(event) =>
-                handleFormSubmit(event, heroFormData, setHeroFormLoading, setHeroFormData, router)
-              }
-            />
-          </div>
-        </div>
-      )}
+              <button
+                type="button"
+                onClick={() => setIsQuoteModalOpen(false)}
+                className="absolute right-4 top-4 rounded-full p-1 text-white/80 transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#d7a661]"
+                aria-label="Close quote form"
+              >
+                <X size={22} />
+              </button>
+              <h2 className={`${playfair.className} mb-5 pr-8 text-xl text-white`}>
+                Schedule a Project Discussion
+              </h2>
+              <FarmhouseQuoteForm
+                formData={heroFormData}
+                loading={heroFormLoading}
+                onChange={setHeroFormData}
+                onSubmit={(event) =>
+                  handleFormSubmit(event, heroFormData, setHeroFormLoading, setHeroFormData, router)
+                }
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <section className="relative min-h-screen w-full overflow-hidden">
 
@@ -370,7 +380,7 @@ const processSteps = [
   initial={{ opacity: 0, y: 12 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1, delay: 1.1 }}
-  className="pt-6 grid grid-cols-1 gap-y-5 sm:grid-cols-3 sm:gap-y-0 lg:flex lg:flex-nowrap lg:items-center"
+  className="grid w-full min-w-0 max-w-full grid-cols-3 divide-x divide-white/15 overflow-hidden rounded-2xl border border-white/20 bg-white/10 px-2 py-5 shadow-lg backdrop-blur-md sm:px-4 sm:py-6"
 >
   {[
     { icon: MapPin, value: "56+", label: "CITIES COVERED" },
@@ -378,35 +388,34 @@ const processSteps = [
     { icon: Trophy, value: "9+", label: "YEARS OF EXPERIENCE" },
   ].map((stat, i) => {
     const Icon = stat.icon;
+
     return (
-      <div key={stat.label} className="flex items-center min-w-0">
-        {i !== 0 && (
-          <div className="hidden sm:block w-px h-10 lg:h-12 bg-white/15 mx-4 md:mx-6 lg:mx-8 shrink-0" />
-        )}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 + i * 0.15 }}
-          className="flex items-center gap-2.5 sm:gap-3 min-w-0"
-        >
-          <Icon
-            className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#d7a661] shrink-0"
-            strokeWidth={1.75}
-          />
-          <div className="flex flex-col leading-tight min-w-0">
-            <span
-              className={`${inter.className} text-white text-xl sm:text-xl lg:text-2xl font-semibold tracking-tight whitespace-nowrap`}
-            >
-              {stat.value}
-            </span>
-            <span
-              className={`${inter.className} text-white/70 text-[9px] sm:text-[9px] lg:text-[10px] font-medium tracking-[0.1em] lg:tracking-[0.12em] uppercase whitespace-nowrap`}
-            >
-              {stat.label}
-            </span>
-          </div>
-        </motion.div>
-      </div>
+      <motion.div
+        key={stat.label}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2 + i * 0.15 }}
+        className="flex min-w-0 flex-col items-center justify-center gap-2 px-1 text-center xl:flex-row xl:gap-3 xl:px-4 xl:text-left"
+      >
+        <Icon
+          className="h-6 w-6 shrink-0 text-[#d7a661] sm:h-7 sm:w-7 lg:h-8 lg:w-8"
+          strokeWidth={1.75}
+        />
+
+        <div className="flex min-w-0 flex-col items-center leading-tight xl:items-start">
+          <span
+            className={`${inter.className} whitespace-nowrap text-lg font-semibold tracking-tight text-white sm:text-2xl`}
+          >
+            {stat.value}
+          </span>
+
+          <span
+            className={`${inter.className} mt-1 text-[8px] font-medium uppercase leading-relaxed tracking-[0.08em] text-white/70 sm:text-[10px] sm:tracking-[0.12em]`}
+          >
+            {stat.label}
+          </span>
+        </div>
+      </motion.div>
     );
   })}
 </motion.div>
@@ -697,7 +706,7 @@ const processSteps = [
       className="relative h-130 md:h-130 overflow-hidden rounded-3xl shadow-2xl shadow-black/20 group"
     >
       <Image
-        src="/products/office-final-final-1.jpg"
+        src="/products/why-choose-final.jpg"
         alt="Why Choose Texo Prefab"
         fill
         className="object-fill group-hover:scale-105 transition duration-700"
@@ -1582,7 +1591,7 @@ const processSteps = [
         transition={{ duration: 0.3 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-16 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition duration-300 hover:bg-blue-600 sm:bottom-4 sm:left-4"
+        className="fixed bottom-16 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition duration-300 hover:bg-blue-600 sm:bottom-4 sm:right-4"
       >
         <Phone className="w-6 h-6" />
       </motion.a>

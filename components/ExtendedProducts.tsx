@@ -31,15 +31,15 @@ const securityCabins = [
     badge: 'Premium Collection',
     price: 2800,
   },
-  {
-    id: 3,
-    title: 'PUF Security Cabin',
-    description:
-      'Fully customizable security cabins built as per site requirement.',
-    image: '/products/offices/security-puf-cabin.webp',
-    badge: 'Custom Build',
-    price: 3200,
-  },
+  // {
+  //   id: 3,
+  //   title: 'PUF Security Cabin',
+  //   description:
+  //     'Fully customizable security cabins built as per site requirement.',
+  //   image: '/products/offices/security-puf-cabin.webp',
+  //   badge: 'Custom Build',
+  //   price: 3200,
+  // },
 ];
 
 const otherProducts = [
@@ -97,10 +97,12 @@ export default function ExtendedProducts({ onQuoteClick }: { onQuoteClick: () =>
           Security Cabins
         </motion.h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28">
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl w-full mb-28">
           {securityCabins.map((product, idx) => (
             <ProductCard key={product.id} product={product} idx={idx} onQuoteClick={onQuoteClick} />
           ))}
+        </div>
         </div>
 
         {/* ================= OTHER PRODUCTS ================= */}
@@ -173,7 +175,7 @@ function ProductCard({
         </p>
 
         <div className="mt-auto">
-          <div className="mb-4 border-t border-black/10 pt-4">
+          {/* <div className="mb-4 border-t border-black/10 pt-4">
             <p className={`${inter.className} text-sm text-zinc-500`}>
               Starting at{' '}
               <span className="text-lg font-bold text-black">
@@ -181,7 +183,7 @@ function ProductCard({
               </span>{' '}
               / sq.ft
             </p>
-          </div>
+          </div> */}
 
           <button
             type="button"

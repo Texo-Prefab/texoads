@@ -12,21 +12,21 @@ const inter = Inter({ subsets: ["latin"] });
 const SITE_OFFICES = [
   {
     id: 3,
-    title: "Prefab Site Office",
+    title: "Container Office",
     description:
       "Practical, durable spaces with efficient layouts for everyday site operations.",
-    image: "/products/offices/siteoffice.jpg",
-    collection: "Standard",
-    price: 2500,
+    image: "/products/offices/container-img.jpg",
+    collection: "Basic",
+    price: 1500,
   },
   {
     id: 1,
-    title: "Prefab Site Office",
+    title: "Modular Office",
     description:
       "Premium finishes and comfortable interiors for a professional working environment.",
     image: "/products/offices/EXT Toopran - 2,400 Sq.Ft.jpg",
-    collection: "Executive",
-    price: 3000,
+    collection: "Standard",
+    price: 2500,
   },
   {
     id: 2,
@@ -39,35 +39,7 @@ const SITE_OFFICES = [
   },
 ];
 
-const CONTAINER_OFFICES = [
-  {
-    id: 4,
-    title: "Container Office",
-    description:
-      "Portable, ready-to-use offices with practical layouts and modern interiors for everyday operations.",
-    image: "/products/offices/Portable Container Offices.jpg",
-    collection: "Standard",
-    price: 2200,
-  },
-  {
-    id: 5,
-    title: "Container Office",
-    description:
-      "Enhanced insulation, refined finishes, and premium fittings for a more comfortable workspace.",
-    image: "/products/offices/containeroffice.jpg",
-    collection: "Executive",
-    price: 2800,
-  },
-  {
-    id: 6,
-    title: "Container Office",
-    description:
-      "Purpose-built container offices tailored to your operational needs, space, and branding.",
-    image: "/products/offices/container-3.jpg",
-    collection: "Custom",
-    price: 3300,
-  },
-];
+
 
 type Product = (typeof SITE_OFFICES)[number];
 
@@ -155,7 +127,7 @@ export default function OfficeProducts({ onQuoteClick }: { onQuoteClick: () => v
   const ySlow = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section className="py-32 max-w-7xl mx-auto px-6 overflow-hidden bg-linear-to-b from-white via-[#faf8f4] to-white">
+    <section className="py-22 max-w-7xl mx-auto px-6 overflow-hidden bg-linear-to-b from-white via-[#faf8f4] to-white">
       {/* MAIN HEADING */}
       <div className="mb-24 text-center">
         <h2
@@ -169,21 +141,12 @@ export default function OfficeProducts({ onQuoteClick }: { onQuoteClick: () => v
           durability, and professional environments.
         </p>
 
-        <p className={`${inter.className}`}>
-          Starting at{" "}
-          <span className="bg-linear-to-r from-[#886c46] to-[#d7a661] bg-clip-text text-transparent font-bold text-2xl">
-            ₹<CountUp end={2500} duration={1.6} /> per sq.ft
-          </span>
-        </p>
+        
       </div>
 
       {/* SITE OFFICES */}
-      <div className="mb-28">
-        <h3
-          className={`${playfair.className} text-3xl md:text-4xl mb-10 text-center`}
-        >
-          Prefab Site Offices
-        </h3>
+      <div>
+        
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {SITE_OFFICES.map((p, i) => (
@@ -191,27 +154,7 @@ export default function OfficeProducts({ onQuoteClick }: { onQuoteClick: () => v
           ))}
         </div>
       </div>
-
-      {/* CONTAINER OFFICES */}
-      <div>
-        <h3
-          className={`${playfair.className} text-3xl md:text-4xl mb-10 text-center`}
-        >
-          Container Offices
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {CONTAINER_OFFICES.map((p, i) => (
-            <ProductCard
-              key={p.id}
-              product={p}
-              style={{ y: ySlow }}
-              delay={i + 3}
-              onQuoteClick={onQuoteClick}
-            />
-          ))}
-        </div>
-      </div>
+      
     </section>
   );
 }
