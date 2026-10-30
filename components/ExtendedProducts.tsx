@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Playfair_Display, Inter } from 'next/font/google';
 
@@ -18,7 +19,8 @@ const securityCabins = [
     description:
       'Compact modular cabin ideal for entry gates and security checkpoints.',
     image: '/products/offices/securit-ms-cabin.webp',
-    badge: 'BEST SELLER',
+    badge: 'Best Seller',
+    price: 2000,
   },
   {
     id: 2,
@@ -26,7 +28,8 @@ const securityCabins = [
     description:
       'Insulated premium security cabin with lighting and ventilation.',
     image: '/products/offices/security-acp-cabin.webp',
-    badge: 'PREMIUM COLLECTION',
+    badge: 'Premium Collection',
+    price: 2800,
   },
   {
     id: 3,
@@ -34,7 +37,8 @@ const securityCabins = [
     description:
       'Fully customizable security cabins built as per site requirement.',
     image: '/products/offices/security-puf-cabin.webp',
-    badge: 'CUSTOM BUILD',
+    badge: 'Custom Build',
+    price: 3200,
   },
 ];
 
@@ -45,7 +49,8 @@ const otherProducts = [
     description:
       'Temporary sanitation solutions for construction sites and outdoor events.',
     image: '/products/Potable-Toilets.jpg',
-    badge: 'ESSENTIAL UNIT',
+    badge: 'Essential Unit',
+    price: 1800,
   },
   {
     id: 5,
@@ -53,15 +58,17 @@ const otherProducts = [
     description:
       'Prefab restroom facilities for commercial and public infrastructure.',
     image: '/products/modular-toilets.jpeg',
-    badge: 'COMMERCIAL USE',
+    badge: 'Commercial Use',
+    price: 2400,
   },
 ];
 
-export default function ExtendedProducts() {
+type Product = (typeof securityCabins)[number];
+
+export default function ExtendedProducts({ onQuoteClick }: { onQuoteClick: () => void }) {
   return (
     <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* ================= SECTION HEADING ================= */}
         <motion.div
           initial={{ opacity: 0, y: 80 }}
@@ -92,19 +99,18 @@ export default function ExtendedProducts() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28">
           {securityCabins.map((product, idx) => (
-            <ProductCard key={product.id} product={product} idx={idx} />
+            <ProductCard key={product.id} product={product} idx={idx} onQuoteClick={onQuoteClick} />
           ))}
         </div>
 
-        {/* ================= OTHER PRODUCTS (NO HEADING) ================= */}
+        {/* ================= OTHER PRODUCTS ================= */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl w-full">
             {otherProducts.map((product, idx) => (
-              <ProductCard key={product.id} product={product} idx={idx} />
+              <ProductCard key={product.id} product={product} idx={idx} onQuoteClick={onQuoteClick} />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -114,9 +120,17 @@ export default function ExtendedProducts() {
    CARD COMPONENT
 ================================ */
 
-function ProductCard({ product, idx }: any) {
+function ProductCard({
+  product,
+  idx,
+  onQuoteClick,
+}: {
+  product: Product;
+  idx: number;
+  onQuoteClick: () => void;
+}) {
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
@@ -125,45 +139,63 @@ function ProductCard({ product, idx }: any) {
         delay: idx * 0.1,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="group relative h-96 rounded-3xl overflow-hidden cursor-pointer"
+      className="group flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-white p-3 shadow-xl transition-[border-color,box-shadow] duration-500 hover:border-[#886c46]/40 hover:shadow-2xl"
     >
       {/* IMAGE */}
-      <div className="absolute inset-0">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-zinc-100">
         <Image
           src={product.image}
           alt={product.title}
           fill
-          className="object-cover group-hover:scale-110 transition duration-700"
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-linear-to-br from-black/30 via-black/50 to-black/70 group-hover:to-black/90 transition duration-700" />
-      </div>
 
-      {/* CONTENT */}
-      <div className="absolute inset-0 p-8 flex flex-col justify-between">
-        <span className="px-4 py-2 bg-[#d7a661] text-black text-xs font-bold rounded-full w-fit">
+        <span
+          className={`${inter.className} absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black shadow-md backdrop-blur-sm`}
+        >
           {product.badge}
         </span>
-
-        <div>
-          <h3
-            className={`${playfair.className} text-3xl md:text-4xl font-semibold text-white mb-2 group-hover:text-[#d7a661] transition duration-500`}
-          >
-            {product.title}
-          </h3>
-
-          <p className={`${inter.className} text-white/90 text-sm leading-relaxed max-w-xs`}>
-            {product.description}
-          </p>
-        </div>
       </div>
 
-      {/* LIGHT SWEEP */}
-      <motion.div
-        initial={{ opacity: 0, x: -120 }}
-        whileHover={{ opacity: 0.25, x: 260 }}
-        transition={{ duration: 0.6 }}
-        className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent pointer-events-none"
-      />
-    </motion.div>
+      {/* BODY */}
+      <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
+        <h3
+          className={`${playfair.className} mb-2 text-2xl font-semibold text-black transition-colors duration-500 group-hover:text-[#886c46]`}
+        >
+          {product.title}
+        </h3>
+
+        <p
+          className={`${inter.className} mb-5 text-[15px] leading-relaxed text-zinc-600`}
+        >
+          {product.description}
+        </p>
+
+        <div className="mt-auto">
+          <div className="mb-4 border-t border-black/10 pt-4">
+            <p className={`${inter.className} text-sm text-zinc-500`}>
+              Starting at{' '}
+              <span className="text-lg font-bold text-black">
+                ₹{product.price.toLocaleString('en-IN')}
+              </span>{' '}
+              / sq.ft
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onQuoteClick}
+            className={`${inter.className} flex w-full items-center justify-center gap-2 rounded-xl border border-black/80 bg-white px-5 py-3 text-sm font-semibold text-black transition-all duration-300 hover:border-[#886c46] hover:bg-[#886c46] hover:text-white`}
+          >
+            Get Quote
+            <ArrowRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+            />
+          </button>
+        </div>
+      </div>
+    </motion.article>
   );
 }

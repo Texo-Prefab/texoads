@@ -4,7 +4,7 @@
 
 // export async function POST(request: NextRequest) {
 //   try {
-//     const { name, phone, email, budgetRange, projectType, source } = await request.json();
+//     const { name, phone, email, budgetRange, plotLocation, source } = await request.json();
 
 //     if (!name || !phone || !email) {
 //       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -43,7 +43,7 @@
 //         <p><strong>Phone:</strong> ${phone}</p>
 //         <p><strong>Email:</strong> ${email}</p>
 //         <p><strong>Budget Range:</strong> ${budgetRange || 'Not specified'}</p>
-//         <p><strong>Project Type:</strong> ${projectType || 'Not specified'}</p>
+//         <p><strong>Plot Location:</strong> ${plotLocation || 'Not specified'}</p>
 //         <p><strong>Submitted at:</strong> ${new Date().toLocaleString()}</p>
 //       `,
 //     };
@@ -77,7 +77,7 @@
 //         //         name,
 //         //         email,
 //         //         phone,
-//         //         projectType || 'Not specified',
+//         //         plotLocation || 'Not specified',
 //         //         budgetRange || 'Not specified',
 //         //       ],
 //         //     ],
@@ -102,7 +102,7 @@
 //                   name,
 //                   email,
 //                   phone,
-//                   projectType || 'Not specified',
+//                   plotLocation || 'Not specified',
 //                   budgetRange || 'Not specified',
 //                 ],
 //               ],
@@ -139,7 +139,7 @@ type LeadInput = {
   phone: string;
   email: string;
   budgetRange?: string;
-  projectType?: string;
+  plotLocation?: string;
   source?: string;
 };
 
@@ -148,7 +148,7 @@ async function createZohoLead({
   phone,
   email,
   budgetRange,
-  projectType,
+  plotLocation,
   source,
 }: LeadInput): Promise<string> {
   const clientId = process.env.ZOHO_CLIENT_ID;
@@ -200,8 +200,8 @@ async function createZohoLead({
     Lead_Source: source || 'Website',
     Description: [
       `Form source: ${source || 'Website'}`,
-      `Project type: ${projectType || 'Not specified'}`,
       `Budget range: ${budgetRange || 'Not specified'}`,
+      `Plot location: ${plotLocation || 'Not specified'}`,
     ].join('\n'),
   };
 
@@ -229,7 +229,7 @@ async function createZohoLead({
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as Partial<LeadInput>;
-    const { name, phone, email, budgetRange, projectType, source } = body;
+    const { name, phone, email, budgetRange, plotLocation, source } = body;
 
     // Validate required fields.
     if (
@@ -238,10 +238,12 @@ export async function POST(request: NextRequest) {
       typeof phone !== 'string' ||
       !phone.trim() ||
       typeof email !== 'string' ||
-      !email.trim()
+      !email.trim() ||
+      typeof plotLocation !== 'string' ||
+      !plotLocation.trim()
     ) {
       return NextResponse.json(
-        { error: 'Name, phone and email are required' },
+        { error: 'Name, phone, email and plot location are required' },
         { status: 400 }
       );
     }
@@ -280,7 +282,7 @@ export async function POST(request: NextRequest) {
         `Phone: ${phone.trim()}`,
         `Email: ${email.trim()}`,
         `Budget Range: ${budgetRange || 'Not specified'}`,
-        `Project Type: ${projectType || 'Not specified'}`,
+        `Plot Location: ${plotLocation || 'Not specified'}`,
         `Submitted at: ${new Date().toLocaleString('en-IN', {
           timeZone: 'Asia/Kolkata',
         })}`,
@@ -293,7 +295,7 @@ export async function POST(request: NextRequest) {
       phone: phone.trim(),
       email: email.trim(),
       budgetRange,
-      projectType,
+      plotLocation,
       source,
     });
 

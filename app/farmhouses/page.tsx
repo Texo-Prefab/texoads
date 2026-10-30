@@ -5,13 +5,13 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { motion } from 'framer-motion';
 import { Move, Palette, Plug, Zap } from 'lucide-react';
 import {  PhoneCall, PenTool, Factory, Truck } from "lucide-react";
-import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Home, Star, ChevronLeft, ChevronRight, Target, Eye, Plus, HardHat, Trophy, Minus, Facebook, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import SolutionsSection from '@/components/SolutionsSection';
 import OurPortfolio from '@/components/OurPortfolio';
-import ExtendedProducts from '@/components/ExtendedProducts';
+import { FarmhouseQuoteForm, type QuoteFormData } from '@/components/QuoteForm';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -51,8 +51,9 @@ export default function Farmhouses() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [heroFormData, setHeroFormData] = useState({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source:'Farmhouses' });
+  const [heroFormData, setHeroFormData] = useState<QuoteFormData>({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source:'Farmhouses' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 const router = useRouter();
 
 const handlePhoneClick = () => {
@@ -68,10 +69,10 @@ const handlePhoneClick = () => {
 
 const handleFormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
-  formData: typeof heroFormData,
+  formData: QuoteFormData,
   setLoading: (loading: boolean) => void,
 //   setSuccess: (success: boolean) => void,
-  setFormData: (data: typeof heroFormData) => void,
+  setFormData: (data: QuoteFormData) => void,
   router: AppRouterInstance,
 ) => {
     e.preventDefault();
@@ -81,11 +82,11 @@ const handleFormSubmit = async (
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, source: 'Farmhouses' }),
       });
 
       if (response.ok) {
-        setFormData({ name: '', phone: '', email: '', budgetRange: '', projectType: '', source: 'Offices' });
+        setFormData({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source: 'Farmhouses' });
         router.replace("/thankyou-farmhouse");
         
       } else {
@@ -98,6 +99,8 @@ const handleFormSubmit = async (
       setLoading(false);
     }
   };
+
+  const openQuoteModal = () => setIsQuoteModalOpen(true);
 
   const faqs = [
     {
@@ -225,6 +228,48 @@ const processSteps = [
 
   return (
     <main className="w-full bg-white text-black overflow-hidden">
+      <button
+        type="button"
+        onClick={openQuoteModal}
+        className="fixed inset-x-0 bottom-0 z-40 flex w-full items-center justify-center rounded-none bg-[#886c46] px-5 py-3.5 text-sm font-semibold text-black shadow-xl transition hover:bg-[#d7a661] focus:outline-none focus:ring-2 focus:ring-[#886c46] focus:ring-offset-2 sm:inset-x-auto sm:bottom-7 sm:right-7 sm:w-auto sm:rounded-full sm:px-5 sm:py-3"
+      >
+        Get a Quote
+      </button>
+
+      {isQuoteModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6"
+          onClick={() => setIsQuoteModalOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Get a quote"
+        >
+          <div
+            className="relative max-h-[calc(100vh-3rem)] w-full max-w-md overflow-y-auto rounded-2xl bg-[#111110] p-6 shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsQuoteModalOpen(false)}
+              className="absolute right-4 top-4 rounded-full p-1 text-white/80 transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#d7a661]"
+              aria-label="Close quote form"
+            >
+              <X size={22} />
+            </button>
+            <h2 className={`${playfair.className} mb-5 pr-8 text-xl text-white`}>
+              Schedule a Project Discussion
+            </h2>
+            <FarmhouseQuoteForm
+              formData={heroFormData}
+              loading={heroFormLoading}
+              onChange={setHeroFormData}
+              onSubmit={(event) =>
+                handleFormSubmit(event, heroFormData, setHeroFormLoading, setHeroFormData, router)
+              }
+            />
+          </div>
+        </div>
+      )}
 
       <section className="relative min-h-screen w-full overflow-hidden">
 
@@ -294,7 +339,7 @@ const processSteps = [
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              Prefab Homes
+              Your Dream Home
             </motion.span>
             <br />
             <motion.span
@@ -303,17 +348,10 @@ const processSteps = [
               transition={{ duration: 1, delay: 0.5 }}
               className="bg-linear-to-r from-[#d7a661] via-white to-[#d7a661] bg-clip-text text-transparent"
             >
-              Delivered in Weeks
+              Built in Weeks
             </motion.span>
             <br />
-            <motion.span
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="text-white/70 text-4xl md:text-5xl"
-            >
-              Not Months
-            </motion.span>
+            
           </motion.h1>
 
           <motion.div
@@ -323,43 +361,55 @@ const processSteps = [
             className="space-y-4"
           >
             <p className={`${inter.className} text-white/80 text-lg max-w-xl leading-relaxed`}>
-              Skip long construction timelines. Our prefab homes are expertly designed,
-              factory-built, and installed within weeks - without compromising on
-              quality, structural strength, or finishing standards.
+              Thoughtfully designed. Precision-built. Delivered in weeks.
             </p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.1 }}
-              className="flex gap-6 pt-6 flex-wrap"
-            >
-              <div className="flex items-center gap-2">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0 }}
-                  className="w-3 h-3 bg-[#d7a661] rounded-full"
-                />
-                <span className={`${inter.className} text-white/90 text-sm`}>56+ CITIES COVERED</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-                  className="w-3 h-3 bg-[#d7a661] rounded-full"
-                />
-                <span className={`${inter.className} text-white/90 text-sm`}>1300+ PROJECTS</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                  className="w-3 h-3 bg-[#d7a661] rounded-full"
-                />
-                <span className={`${inter.className} text-white/90 text-sm`}>9+ YEARS EXPERIENCE</span>
-              </div>
-            </motion.div>
           </motion.div>
+        
+<motion.div
+  initial={{ opacity: 0, y: 12 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 1.1 }}
+  className="pt-6 grid grid-cols-1 gap-y-5 sm:grid-cols-3 sm:gap-y-0 lg:flex lg:flex-nowrap lg:items-center"
+>
+  {[
+    { icon: MapPin, value: "56+", label: "CITIES COVERED" },
+    { icon: HardHat, value: "1,300+", label: "PROJECTS" },
+    { icon: Trophy, value: "9+", label: "YEARS OF EXPERIENCE" },
+  ].map((stat, i) => {
+    const Icon = stat.icon;
+    return (
+      <div key={stat.label} className="flex items-center min-w-0">
+        {i !== 0 && (
+          <div className="hidden sm:block w-px h-10 lg:h-12 bg-white/15 mx-4 md:mx-6 lg:mx-8 shrink-0" />
+        )}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2 + i * 0.15 }}
+          className="flex items-center gap-2.5 sm:gap-3 min-w-0"
+        >
+          <Icon
+            className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#d7a661] shrink-0"
+            strokeWidth={1.75}
+          />
+          <div className="flex flex-col leading-tight min-w-0">
+            <span
+              className={`${inter.className} text-white text-xl sm:text-xl lg:text-2xl font-semibold tracking-tight whitespace-nowrap`}
+            >
+              {stat.value}
+            </span>
+            <span
+              className={`${inter.className} text-white/70 text-[9px] sm:text-[9px] lg:text-[10px] font-medium tracking-[0.1em] lg:tracking-[0.12em] uppercase whitespace-nowrap`}
+            >
+              {stat.label}
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    );
+  })}
+</motion.div>
 
         </div>
 
@@ -416,6 +466,15 @@ const processSteps = [
                           placeholder="Email Address"
                         />
         
+                        <input
+                          type="text"
+                          required
+                          value={heroFormData.plotLocation}
+                          onChange={(e) => setHeroFormData({ ...heroFormData, plotLocation: e.target.value })}
+                          className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                          placeholder="Enter Plot Location"
+                        />
+
                         <select
                           value={heroFormData.budgetRange}
                           required
@@ -429,24 +488,7 @@ const processSteps = [
                           <option>₹20L - 1Cr+</option>
                         </select>
         
-                        <select
-                          value={heroFormData.projectType}
-                          required
-                          onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
-                          className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                        >
-                          <option value="">Select Project Type</option>
-                          <option>A-Frame</option>
-                          <option>Wooden House</option>
-                          <option>Arc Pod</option>
-                          <option>Farmhouse</option>
-                          <option>Barn House</option>
-                          <option>Container House</option>
-                          <option>Prefab Home</option>
-                          <option>Portable Toilets</option>
-                          <option>Security Cabins</option>
-                          <option>Modular Restrooms</option>
-                        </select>
+                    
         
                         <button
                           type="submit"
@@ -464,7 +506,7 @@ const processSteps = [
       </div>
     </section>
 
-    <SolutionsSection />
+    <SolutionsSection onQuoteClick={openQuoteModal} />
 
 {/* <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">
@@ -548,7 +590,7 @@ const processSteps = [
 
   </div>
 </section> */}
-<ExtendedProducts />
+{/* <ExtendedProducts /> */}
 
 
     <OurPortfolio />
@@ -1269,6 +1311,15 @@ const processSteps = [
                             placeholder="Email Address"
                           />
           
+                          <input
+                            type="text"
+                            required
+                            value={heroFormData.plotLocation}
+                            onChange={(e) => setHeroFormData({ ...heroFormData, plotLocation: e.target.value })}
+                            className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm placeholder:text-black/80 focus:outline-none focus:border-white"
+                            placeholder="Enter Plot Location"
+                          />
+
                           <select
                             value={heroFormData.budgetRange}
                             required
@@ -1282,24 +1333,7 @@ const processSteps = [
                             <option>₹20L - 1Cr+</option>
                           </select>
           
-                          <select
-                            value={heroFormData.projectType}
-                            required
-                            onChange={(e) => setHeroFormData({ ...heroFormData, projectType: e.target.value })}
-                            className="w-full bg-white border my-4 border-white/20 text-black px-3 py-2.5 rounded-2xl text-sm"
-                          >
-                            <option value="">Select Project Type</option>
-                            <option>A-Frame</option>
-                            <option>Wooden House</option>
-                            <option>Arc Pod</option>
-                            <option>Farmhouse</option>
-                            <option>Barn House</option>
-                            <option>Container House</option>
-                            <option>Prefab Home</option>
-                            <option>Portable Toilets</option>
-                            <option>Security Cabins</option>
-                            <option>Modular Restrooms</option>
-                          </select>
+                  
           
                           <button
                             type="submit"
@@ -1548,7 +1582,7 @@ const processSteps = [
         transition={{ duration: 0.3 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg transition duration-300"
+        className="fixed bottom-16 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition duration-300 hover:bg-blue-600 sm:bottom-4 sm:left-4"
       >
         <Phone className="w-6 h-6" />
       </motion.a>
