@@ -52,7 +52,7 @@ export default function PrefabOffices() {
   const [statsInView, setStatsInView] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [heroFormData, setHeroFormData] = useState<QuoteFormData>({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source:'Offices' });
+  const [heroFormData, setHeroFormData] = useState<QuoteFormData>({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source:'Prefab Offices' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 const router = useRouter();
@@ -83,11 +83,11 @@ const handleFormSubmit = async (
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, source: 'Offices' }),
+        body: JSON.stringify({ ...formData, source: 'Prefab Offices' }),
       });
 
       if (response.ok) {
-        setFormData({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source: 'Offices' });
+        setFormData({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source: 'Prefab Offices' });
         router.replace("/thankyou");
         
       } else {
@@ -1488,94 +1488,58 @@ const processSteps = [
           </div>
         </div>
 
-        <div className="py-16 border-b border-black/5">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.6 }}
-              className={`${playfair.className} text-2xl font-semibold mb-10 text-center text-[#886c46]`}
-            >
-              Our Offices
-            </motion.h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="group bg-linear-to-br from-white/80 to-[#f8f5f0]/80 backdrop-blur border border-[#886c46]/20 rounded-2xl p-8 hover:shadow-xl transition duration-300 hover:border-[#886c46]/40"
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-[#886c46]/10 group-hover:bg-[#886c46]/20 rounded-xl flex items-center justify-center transition duration-300">
-                    <MapPin className="w-6 h-6 text-[#886c46]" />
-                  </div>
-                  <div>
-                    <h4 className={`${playfair.className} text-xl font-semibold text-[#886c46] mb-1`}>
-                      Manufacturing unit & Sales office
-                    </h4>
-                    <div className="h-1 w-12 bg-[#d7a661]/30 rounded-full" />
-                  </div>
-                </div>
-                
-                <p className={`${inter.className} text-sm text-black/75 leading-relaxed mb-6 font-light`}>
-                  Texo Prefab, Plot No.22, Phase-1, I.D.A,Jeedimetla,<br />
-                   Shapur Nagar,Hyderabad,<br />
-                  Telangana 500055<br />
-                    India
-                </p>
-                <a 
-                  href="#" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-xl transition duration-300 font-medium shadow-lg hover:shadow-xl group/btn"
-                >
-                  <MapPin className="w-4 h-4 group-hover/btn:scale-110 transition" />
-                  View on Maps
-                </a>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="group bg-linear-to-br from-white/80 to-[#f8f5f0]/80 backdrop-blur border border-[#886c46]/20 rounded-2xl p-8 hover:shadow-xl transition duration-300 hover:border-[#886c46]/40"
-              >
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-[#886c46]/10 group-hover:bg-[#886c46]/20 rounded-xl flex items-center justify-center transition duration-300">
-                    <MapPin className="w-6 h-6 text-[#886c46]" />
-                  </div>
-                  <div>
-                    <h4 className={`${playfair.className} text-xl font-semibold text-[#886c46] mb-1`}>
-                      Experience Centre & Branch Office
-                    </h4>
-                    <div className="h-1 w-12 bg-[#d7a661]/30 rounded-full" />
+        <div className="py-16 border-b  border-black/5">
+                  <div className="max-w-7xl mx-auto px-6">
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{ duration: 0.6 }}
+                      className={`${playfair.className} text-2xl font-semibold mb-10 text-center text-[#886c46]`}
+                    >
+                      Our Offices
+                    </motion.h3>
+                    
+                    <div className="flex justify-center">
+                      
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="group w-full max-w-2xl rounded-2xl border border-[#886c46]/20 bg-linear-to-br from-white/80 to-[#f8f5f0]/80 p-8 backdrop-blur transition duration-300 hover:border-[#886c46]/40 hover:shadow-xl"
+                      >
+                        <div className="mb-6 flex items-center gap-4">
+                          <div className="w-12 h-12 bg-[#886c46]/10 group-hover:bg-[#886c46]/20 rounded-xl flex items-center justify-center transition duration-300">
+                            <MapPin className="w-6 h-6 text-[#886c46]" />
+                          </div>
+                          <div>
+                            <h4 className={`${playfair.className} text-xl font-semibold text-[#886c46] mb-1`}>
+                              Manufacturing unit & Sales office
+                            </h4>
+                            <div className="h-1 w-12 bg-[#d7a661]/30 rounded-full" />
+                          </div>
+                        </div>
+                        
+                        <p className={`${inter.className} text-sm text-black/75 leading-relaxed mb-6 font-light`}>
+                          Texo Prefab, Plot No.22, Phase-1, I.D.A,Jeedimetla,<br />
+                           Shapur Nagar,Hyderabad,<br />
+                          Telangana 500055<br />
+                            India
+                        </p>
+                        <a 
+                          href="#" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-5 py-3 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-xl transition duration-300 font-medium shadow-lg hover:shadow-xl group/btn"
+                        >
+                          <MapPin className="w-4 h-4 group-hover/btn:scale-110 transition" />
+                          View on Maps
+                        </a>
+                      </motion.div>
+                    </div>
                   </div>
                 </div>
-                
-                <p className={`${inter.className} text-sm text-black/75 leading-relaxed mb-6 font-light`}>
-                  Texo Prefab World<br />
-                  Muthangi, Patancheruvu ORR Exit No.03<br />
-                  Hyderabad, Telangana 502300<br />
-                  India
-                </p>
-                <a 
-                  href="#" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-[#886c46] hover:bg-[#6b5236] text-white rounded-xl transition duration-300 font-medium shadow-lg hover:shadow-xl group/btn"
-                >
-                  <MapPin className="w-4 h-4 group-hover/btn:scale-110 transition" />
-                  View on Maps
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </div>
 
         <motion.div
           initial={{ opacity: 0 }}

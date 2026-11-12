@@ -5,6 +5,12 @@
   width: max-content;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation-play-state: paused;
+  }
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -13,4 +19,3 @@
     transform: translateX(-50%);
   }
 }
-
