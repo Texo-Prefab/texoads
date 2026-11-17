@@ -12,6 +12,7 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import SolutionsSection from '@/components/SolutionsSection';
 import OurPortfolio from '@/components/OurPortfolio';
 import { FarmhouseQuoteForm, type QuoteFormData } from '@/components/QuoteForm';
+import FarmhouseEstimator from '@/components/FarmhouseEstimator';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -431,8 +432,8 @@ const processSteps = [
                     <h3 className={`${playfair.className} text-white text-xl mb-5`}>
                         Schedule a Project Discussion
                     </h3>
-        
-                    
+
+
                       <form  onSubmit={(e) =>
             handleFormSubmit(
               e,
@@ -537,6 +538,12 @@ const processSteps = [
     </section>
 
     <SolutionsSection onQuoteClick={openQuoteModal} />
+
+    <FarmhouseEstimator
+      formData={heroFormData}
+      onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}
+      onScheduleCall={openQuoteModal}
+    />
 
 {/* <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">

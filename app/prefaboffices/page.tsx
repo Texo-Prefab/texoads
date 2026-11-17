@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import ExtendedProducts from '@/components/ExtendedProducts';
 import { OfficeQuoteForm, type QuoteFormData } from '@/components/QuoteForm';
+import Process from '@/components/Process';
+import OfficeEstimator from '@/components/OfficeEstimator';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -242,7 +244,7 @@ const processSteps = [
 
 
   return (
-    <main className="w-full bg-white text-black overflow-hidden">
+    <main className="w-full bg-white text-black overflow-x-clip">
       <button
   type="button"
   onClick={openQuoteModal}
@@ -622,6 +624,11 @@ const processSteps = [
 </section> */}
 
 <ExtendedProducts onQuoteClick={openQuoteModal} />
+    <OfficeEstimator
+      formData={heroFormData}
+      onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}
+      onScheduleCall={openQuoteModal}
+    />
     <OfficePortfolio />
 
 
@@ -964,7 +971,7 @@ const processSteps = [
   </div>
 </section>
 
-
+              <Process />
       <section className="py-24 overflow-hidden bg-white">
         <div className="mb-16">
           <h2 className={`${playfair.className} text-3xl md:text-6xl font-semibold text-center bg-linear-to-r from-black via-[#886c46] to-black bg-clip-text text-transparent`}>
