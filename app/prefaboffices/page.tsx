@@ -755,94 +755,8 @@ const processSteps = [
 </section>
 
 
-      <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-20 text-center"
-          >
-            <motion.h2 className={`${playfair.className} text-4xl md:text-6xl font-semibold bg-linear-to-r from-black via-[#886c46] to-black bg-clip-text text-transparent mb-4`}>
-              Our Process
-            </motion.h2>
-            <p className={`${inter.className} text-zinc-600 text-lg max-w-2xl mx-auto`}>
-              From consultation to installation, we guide you through every step of your prefab journey with expertise and care.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative"
-              >
-                <div className="relative rounded-3xl overflow-hidden bg-white border border-[#886c46]/20 hover:border-[#886c46]/40 shadow-lg hover:shadow-2xl transition duration-300 h-full flex flex-col">
-                  
-                  <div className="relative h-56 overflow-hidden bg-linear-to-br from-[#f8f5f0] to-[#f0ebe0]">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition duration-700"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
-                  </div>
-
-                  <motion.div
-                    initial={{ scale: 0.8, y: -10 }}
-                    whileInView={{ scale: 1, y: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.6, delay: index * 0.12 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute  right-6 z-10"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#886c46] to-[#d7a661] text-white flex items-center justify-center font-bold text-xl shadow-lg border-4 border-white">
-                      {index + 1}
-                    </div>
-                  </motion.div>
-
-                  {/* Content Section */}
-                  <div className="p-8 flex-1 flex flex-col">
-                    {/* Icon */}
-                    <div className="mb-6">
-                      <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#886c46]/10 to-[#d7a661]/10 flex items-center justify-center group-hover:from-[#886c46]/20 group-hover:to-[#d7a661]/20 transition duration-300">
-                        <step.icon className="w-8 h-8 text-[#886c46]" />
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <h4 className={`${playfair.className} font-semibold text-2xl text-black mb-3 group-hover:text-[#886c46] transition duration-300`}>
-                      {step.title}
-                    </h4>
-
-                    {/* Description based on step */}
-                    <p className={`${inter.className} text-black/70 text-sm leading-relaxed grow`}>
-                      {index === 0 && "Discuss your vision, requirements, and budget with our expert team."}
-                      {index === 1 && "Our architects create custom designs tailored to your specifications."}
-                      {index === 2 && "Precision-built in our state-of-the-art facilities with quality control."}
-                      {index === 3 && "Professional installation and handover of your dream prefab home."}
-                    </p>
-
-                    {/* Connecting Line (for desktop) */}
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden lg:block absolute -right-4 top-1/2 w-8 h-1 bg-linear-to-r from-[#886c46] to-transparent group-hover:from-[#d7a661] transition duration-300" style={{ transform: 'translateY(-50%)' }} />
-                    )}
-                  </div>
-
-                  {/* Hover Border Accent */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-[#886c46]/0 via-[#d7a661] to-[#886c46]/0 opacity-0 group-hover:opacity-100 transition duration-300" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
+              <Process />
 
       <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">
@@ -971,7 +885,6 @@ const processSteps = [
   </div>
 </section>
 
-              <Process />
       <section className="py-24 overflow-hidden bg-white">
         <div className="mb-16">
           <h2 className={`${playfair.className} text-3xl md:text-6xl font-semibold text-center bg-linear-to-r from-black via-[#886c46] to-black bg-clip-text text-transparent`}>

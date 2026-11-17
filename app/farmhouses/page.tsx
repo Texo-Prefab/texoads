@@ -13,6 +13,7 @@ import SolutionsSection from '@/components/SolutionsSection';
 import OurPortfolio from '@/components/OurPortfolio';
 import { FarmhouseQuoteForm, type QuoteFormData } from '@/components/QuoteForm';
 import FarmhouseEstimator from '@/components/FarmhouseEstimator';
+import Process from '@/components/Process';
 
 function CountUpNumber({ end, duration = 2000, trigger = true }: { end: number; duration?: number; trigger?: boolean }) {
   const [count, setCount] = useState(0);
@@ -228,7 +229,7 @@ const processSteps = [
 
 
   return (
-    <main className="w-full bg-white text-black overflow-hidden">
+    <main className="w-full bg-white text-black overflow-x-clip">
       <button
   type="button"
   onClick={openQuoteModal}
@@ -756,7 +757,7 @@ const processSteps = [
 </section>
 
 
-      <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
+      {/* <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
@@ -808,21 +809,18 @@ const processSteps = [
                     </div>
                   </motion.div>
 
-                  {/* Content Section */}
                   <div className="p-8 flex-1 flex flex-col">
-                    {/* Icon */}
+                  
                     <div className="mb-6">
                       <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#886c46]/10 to-[#d7a661]/10 flex items-center justify-center group-hover:from-[#886c46]/20 group-hover:to-[#d7a661]/20 transition duration-300">
                         <step.icon className="w-8 h-8 text-[#886c46]" />
                       </div>
                     </div>
 
-                    {/* Title */}
                     <h4 className={`${playfair.className} font-semibold text-2xl text-black mb-3 group-hover:text-[#886c46] transition duration-300`}>
                       {step.title}
                     </h4>
 
-                    {/* Description based on step */}
                     <p className={`${inter.className} text-black/70 text-sm leading-relaxed grow`}>
                       {index === 0 && "Discuss your vision, requirements, and budget with our expert team."}
                       {index === 1 && "Our architects create custom designs tailored to your specifications."}
@@ -830,20 +828,19 @@ const processSteps = [
                       {index === 3 && "Professional installation and handover of your dream prefab home."}
                     </p>
 
-                    {/* Connecting Line (for desktop) */}
                     {index < processSteps.length - 1 && (
                       <div className="hidden lg:block absolute -right-4 top-1/2 w-8 h-1 bg-linear-to-r from-[#886c46] to-transparent group-hover:from-[#d7a661] transition duration-300" style={{ transform: 'translateY(-50%)' }} />
                     )}
                   </div>
 
-                  {/* Hover Border Accent */}
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-[#886c46]/0 via-[#d7a661] to-[#886c46]/0 opacity-0 group-hover:opacity-100 transition duration-300" />
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <Process />
 
       <section className="py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
   <div className="max-w-7xl mx-auto px-6">
