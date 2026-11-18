@@ -707,7 +707,7 @@ const processSteps = [
   </div>
 </section> */}
 
-<ExtendedProducts onQuoteClick={openQuoteModal} />
+{/* <ExtendedProducts onQuoteClick={openQuoteModal} /> */}
     <OfficeEstimator
       formData={heroFormData}
       onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}

@@ -24,7 +24,7 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
   const config = FARMHOUSE_ESTIMATOR;
   const estimator = useEstimator(config, formData);
   const { product, area, total, budgetStatus } = estimator;
-  const configuration = `${product.name} | ${area === null ? 'Area not selected' : `${area.toLocaleString('en-IN')} sq. ft.`} | ${total === null ? 'Estimated cost unavailable' : `${formatINR(total)} estimated cost`} | Budget: ${formData.budgetRange || 'Not selected'}`;
+  const configuration = `${product.name} | ${area === null ? 'Area not selected' : `${area.toLocaleString('en-IN')} sq. ft.`} | ${estimator.fitoutLevel === 'premium' ? 'Premium' : 'Standard'} fit-out | ${total === null ? 'Estimated cost unavailable' : `${formatINR(total)} estimated cost`} | Budget: ${formData.budgetRange || 'Not selected'}`;
 
   return (
     <section id="farmhouse-estimator" className="py-24 md:py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
@@ -72,6 +72,9 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
             <div className="space-y-10 px-3 py-5 sm:px-5 md:px-7 md:py-7 lg:col-span-3">
               <fieldset>
                 <legend className="mb-4 text-sm font-semibold text-black">1. Choose your design</legend>
+                <p className="-mt-2 mb-4 text-xs leading-relaxed text-zinc-500">
+                  <span className="font-semibold text-[#886c46]">Resort Modules</span> includes Wooden House, Barn House, A-Frame, and Arc Pod designs.
+                </p>
                 <div role="radiogroup" aria-label="Farmhouse design" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {config.products.map((item) => {
                     const selected = item.id === product.id;
@@ -141,6 +144,40 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
                   {config.maxArea.toLocaleString('en-IN')} sq. ft.
                 </p>
               </div>
+
+              <fieldset>
+                <legend className="mb-4 text-sm font-semibold text-black">3. Fit-out level</legend>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={estimator.fitoutLevel === 'standard'}
+                    onClick={() => estimator.setFitoutLevel('standard')}
+                    className={`rounded-2xl border px-3 py-4 text-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#886c46] ${
+                      estimator.fitoutLevel === 'standard'
+                        ? 'border-[#886c46] bg-[#faf8f4] ring-1 ring-[#886c46]'
+                        : 'border-black/10 bg-white hover:border-[#886c46]/40'
+                    }`}
+                  >
+                    <span className="block text-base font-semibold text-[#886c46]">Standard</span>
+                    <span className="mt-1 block text-xs text-zinc-500">Ready-to-use interiors</span>
+                  </button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={estimator.fitoutLevel === 'premium'}
+                    onClick={() => estimator.setFitoutLevel('premium')}
+                    className={`rounded-2xl border px-3 py-4 text-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#886c46] ${
+                      estimator.fitoutLevel === 'premium'
+                        ? 'border-[#886c46] bg-[#faf8f4] ring-1 ring-[#886c46]'
+                        : 'border-black/10 bg-white hover:border-[#886c46]/40'
+                    }`}
+                  >
+                    <span className="block text-base font-semibold text-[#886c46]">Premium</span>
+                    <span className="mt-1 block text-xs text-zinc-500">Upgraded finishes (+₹650/sq. ft.)</span>
+                  </button>
+                </div>
+              </fieldset>
             </div>
 
             {/* Summary */}
@@ -158,7 +195,7 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-white/60">Cost per sq. ft.</dt>
-                  <dd className="text-right font-medium">{formatINR(product.ratePerSqFt)}</dd>
+                  <dd className="text-right font-medium">{formatINR(estimator.effectiveRatePerSqFt)}</dd>
                 </div>
               </dl>
 

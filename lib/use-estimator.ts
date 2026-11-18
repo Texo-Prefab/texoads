@@ -13,10 +13,13 @@ export function useEstimator(config: EstimatorConfig, customer: QuoteFormData) {
   const [productId, setProductId] = useState(config.products[0].id);
   const [areaInput, setAreaInput] = useState(String(config.products[0].defaultArea));
   const [areaEdited, setAreaEdited] = useState(false);
+  const [fitoutLevel, setFitoutLevel] = useState<'standard' | 'premium'>('standard');
 
   const product = config.products.find((item) => item.id === productId) ?? config.products[0];
   const area = parseArea(areaInput, config);
-  const total = area === null ? null : area * product.ratePerSqFt;
+  const fitoutPremiumPerSqFt = fitoutLevel === 'premium' ? 650 : 0;
+  const effectiveRatePerSqFt = product.ratePerSqFt + fitoutPremiumPerSqFt;
+  const total = area === null ? null : area * effectiveRatePerSqFt;
   const budgetStatus = total === null ? null : compareWithBudget(total, customer.budgetRange);
 
   const selectProduct = (id: string) => {
@@ -48,5 +51,8 @@ export function useEstimator(config: EstimatorConfig, customer: QuoteFormData) {
     stepArea,
     total,
     budgetStatus,
+    fitoutLevel,
+    setFitoutLevel,
+    effectiveRatePerSqFt,
   };
 }
