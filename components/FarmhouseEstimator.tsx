@@ -1,7 +1,7 @@
 'use client';
 
 import { Playfair_Display, Inter } from 'next/font/google';
-import { Minus, PhoneCall, Plus } from 'lucide-react';
+import { FileText, Minus, Plus } from 'lucide-react';
 import type { QuoteFormData } from '@/components/QuoteForm';
 import { FARMHOUSE_ESTIMATOR } from '@/data/farmhouse-estimator-data';
 import { BUDGET_RANGES } from '@/data/budget-ranges';
@@ -17,13 +17,14 @@ type FarmhouseEstimatorProps = {
   formData: QuoteFormData;
   onBudgetChange: (budgetRange: string) => void;
   /** Opens the page's quote form (Farmhouse or Office variant from QuoteForm.tsx). */
-  onScheduleCall: () => void;
+  onScheduleCall: (configuration: string) => void;
 };
 
 export default function FarmhouseEstimator({ formData, onBudgetChange, onScheduleCall }: FarmhouseEstimatorProps) {
   const config = FARMHOUSE_ESTIMATOR;
   const estimator = useEstimator(config, formData);
   const { product, area, total, budgetStatus } = estimator;
+  const configuration = `${product.name} | ${area === null ? 'Area not selected' : `${area.toLocaleString('en-IN')} sq. ft.`} | ${total === null ? 'Estimated cost unavailable' : `${formatINR(total)} estimated cost`} | Budget: ${formData.budgetRange || 'Not selected'}`;
 
   return (
     <section id="farmhouse-estimator" className="py-24 md:py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
@@ -192,11 +193,11 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
               <div className="mt-auto pt-6">
                 <button
                   type="button"
-                  onClick={onScheduleCall}
+                  onClick={() => onScheduleCall(configuration)}
                   className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#886c46] py-3 text-sm font-semibold text-white transition hover:bg-[#d7a661]"
                 >
-                  <PhoneCall size={16} />
-                  Schedule a Free Call
+                  <FileText size={16} />
+                  Get the Free Quote
                 </button>
               </div>
             </div>

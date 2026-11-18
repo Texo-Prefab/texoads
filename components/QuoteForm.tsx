@@ -107,3 +107,53 @@ export function OfficeQuoteForm(props: QuoteFormProps) {
 export function FarmhouseQuoteForm(props: QuoteFormProps) {
   return <QuoteFormFields {...props} />;
 }
+
+export function FreeCallForm({
+  formData,
+  loading,
+  onChange,
+  onSubmit,
+}: QuoteFormProps) {
+  return (
+    <form onSubmit={onSubmit} className="space-y-3">
+      <input
+        type="text"
+        required
+        value={formData.name}
+        onChange={(event) => onChange({ ...formData, name: event.target.value })}
+        className="w-full border bg-white border-white/20 text-black px-3 py-3 rounded-2xl text-sm placeholder:text-black/60 focus:outline-none focus:border-[#d7a661]"
+        placeholder="Full Name"
+        autoComplete="name"
+      />
+
+      <div className="flex items-center bg-white border border-white/20 rounded-2xl text-black">
+        <span className="px-3 text-sm font-medium">+91</span>
+        <input
+          type="tel"
+          inputMode="numeric"
+          required
+          maxLength={10}
+          pattern="[0-9]{10}"
+          value={formData.phone}
+          onChange={(event) =>
+            onChange({
+              ...formData,
+              phone: event.target.value.replace(/\D/g, '').slice(0, 10),
+            })
+          }
+          className="w-full bg-transparent px-3 py-3 text-sm placeholder:text-black/60 focus:outline-none"
+          placeholder="Mobile Number"
+          autoComplete="tel"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-[#886c46] text-white py-3 rounded-2xl text-sm font-semibold hover:bg-[#d7a661] transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {loading ? 'Submitting...' : 'Get the Free Quote'}
+      </button>
+    </form>
+  );
+}

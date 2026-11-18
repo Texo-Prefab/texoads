@@ -12,7 +12,7 @@ import OfficeProducts from '@/components/OfficeProducts';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import ExtendedProducts from '@/components/ExtendedProducts';
-import { OfficeQuoteForm, type QuoteFormData } from '@/components/QuoteForm';
+import { OfficeQuoteForm, FreeCallForm, type QuoteFormData } from '@/components/QuoteForm';
 import Process from '@/components/Process';
 import OfficeEstimator from '@/components/OfficeEstimator';
 
@@ -57,6 +57,9 @@ export default function PrefabOffices() {
   const [heroFormData, setHeroFormData] = useState<QuoteFormData>({ name: '', phone: '', email: '', budgetRange: '', plotLocation: '', source:'Prefab Offices' });
   const [heroFormLoading, setHeroFormLoading] = useState(false);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isFreeCallModalOpen, setIsFreeCallModalOpen] = useState(false);
+  const [freeCallData, setFreeCallData] = useState({ name: '', phone: '', configuration: '' });
+  const [freeCallLoading, setFreeCallLoading] = useState(false);
 const router = useRouter();
 
 const handlePhoneClick = () => {
@@ -103,7 +106,43 @@ const handleFormSubmit = async (
     }
   };
 
+  const handleFreeCallSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFreeCallLoading(true);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: freeCallData.name,
+          phone: freeCallData.phone,
+          configuration: freeCallData.configuration,
+          source: 'Free Calls',
+        }),
+      });
+
+      if (response.ok) {
+        setFreeCallData({ name: '', phone: '', configuration: '' });
+        setIsFreeCallModalOpen(false);
+        router.replace('/thankyou');
+      } else {
+        const result = await response.json().catch(() => null);
+        alert(result?.error || 'Failed to submit. Please try again.');
+      }
+    } catch (error) {
+      console.error('Free call submission error:', error);
+      alert('An error occurred. Please try again.');
+    } finally {
+      setFreeCallLoading(false);
+    }
+  };
+
   const openQuoteModal = () => setIsQuoteModalOpen(true);
+  const openFreeCallModal = (configuration: string) => {
+    setFreeCallData((current) => ({ ...current, configuration }));
+    setIsFreeCallModalOpen(true);
+  };
 
  const faqs = [
   {
@@ -292,6 +331,51 @@ const processSteps = [
                 onSubmit={(event) =>
                   handleFormSubmit(event, heroFormData, setHeroFormLoading, setHeroFormData, router)
                 }
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isFreeCallModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 px-4 py-6"
+            onClick={() => setIsFreeCallModalOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Get the free quote"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.97 }}
+              className="relative w-full max-w-md rounded-2xl bg-[#111110] p-6 shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setIsFreeCallModalOpen(false)}
+                className="absolute right-4 top-4 rounded-full p-1 text-white/80 transition hover:bg-white/10 hover:text-white"
+                aria-label="Close free call form"
+              >
+                <X size={22} />
+              </button>
+              <h2 className={`${playfair.className} mb-5 pr-8 text-xl text-white`}>
+                Get the Free Quote
+              </h2>
+              {freeCallData.configuration && (
+                <p className="mb-4 rounded-xl border border-[#d7a661]/30 bg-white/5 px-3 py-2.5 text-xs leading-relaxed text-white/80">
+                  {freeCallData.configuration}
+                </p>
+              )}
+              <FreeCallForm
+                formData={{ ...freeCallData, email: '', budgetRange: '', plotLocation: '', source: 'Free Calls' }}
+                loading={freeCallLoading}
+                onChange={(data) => setFreeCallData((current) => ({ ...current, name: data.name, phone: data.phone }))}
+                onSubmit={handleFreeCallSubmit}
               />
             </motion.div>
           </motion.div>
@@ -627,7 +711,7 @@ const processSteps = [
     <OfficeEstimator
       formData={heroFormData}
       onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}
-      onScheduleCall={openQuoteModal}
+      onScheduleCall={openFreeCallModal}
     />
     <OfficePortfolio />
 
