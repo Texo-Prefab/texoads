@@ -4,7 +4,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { FileText, Minus, Plus } from 'lucide-react';
 import { FARMHOUSE_ESTIMATOR } from '@/data/farmhouse-estimator-data';
 import { ESTIMATE_NOTE } from '@/data/estimator-copy';
-import { formatINR, formatINRRange, formatINRShort } from '@/lib/estimator';
+import { formatINR, formatINRRange } from '@/lib/estimator';
 import { useEstimator } from '@/lib/use-estimator';
 
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['500', '600'] });
@@ -153,7 +153,7 @@ export default function FarmhouseEstimator({ onScheduleCall }: FarmhouseEstimato
                     }`}
                   >
                     <span className="block text-base font-semibold text-[#886c46]">Premium</span>
-                    <span className="mt-1 block text-xs text-zinc-500">Upgraded finishes (+₹650/sq. ft.)</span>
+                    <span className="mt-1 block text-xs text-zinc-500">Upgraded finishes</span>
                   </button>
                 </div>
               </fieldset>
@@ -180,10 +180,9 @@ export default function FarmhouseEstimator({ onScheduleCall }: FarmhouseEstimato
 
               <div className="mt-6 border-t border-white/10 pt-6">
                 <p className="text-sm text-white/60">Estimated cost range</p>
-                <p className={`${playfair.className} mt-1 text-4xl font-semibold text-[#d7a661] md:text-5xl`}>
+                <p className={`${playfair.className} mt-1 whitespace-nowrap text-2xl font-semibold text-[#d7a661] sm:text-3xl md:text-4xl`}>
                   {total === null ? '—' : formatINRRange(total)}
                 </p>
-                {total !== null && <p className="mt-1 text-sm text-white/60">Calculated estimate: {formatINRShort(total)}</p>}
               </div>
 
               <p className="mt-5 text-xs leading-relaxed text-white/50">{ESTIMATE_NOTE}</p>
