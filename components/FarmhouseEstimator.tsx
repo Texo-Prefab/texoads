@@ -180,7 +180,7 @@ export default function FarmhouseEstimator({ onScheduleCall }: FarmhouseEstimato
 
               <div className="mt-6 border-t border-white/10 pt-6">
                 <p className="text-sm text-white/60">Estimated cost range</p>
-                <p className={`${playfair.className} mt-1 whitespace-nowrap text-2xl font-semibold text-[#d7a661] sm:text-3xl md:text-4xl`}>
+                <p className={`${playfair.className} mt-1 max-w-full break-words text-2xl font-semibold leading-tight text-[#d7a661] sm:text-3xl md:text-4xl`}>
                   {total === null ? '—' : formatINRRange(total)}
                 </p>
               </div>
