@@ -625,8 +625,6 @@ const processSteps = [
     <SolutionsSection onQuoteClick={openQuoteModal} />
 
     <FarmhouseEstimator
-      formData={heroFormData}
-      onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}
       onScheduleCall={openFreeCallModal}
     />
 

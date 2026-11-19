@@ -1,5 +1,3 @@
-import { BUDGET_RANGES } from '@/data/budget-ranges';
-
 export type EstimatorProduct = {
   id: string;
   name: string;
@@ -19,8 +17,6 @@ export type EstimatorConfig = {
   areaStep: number;
 };
 
-export type BudgetStatus = 'within' | 'above';
-
 const inrFormatter = new Intl.NumberFormat('en-IN', {
   style: 'currency',
   currency: 'INR',
@@ -38,11 +34,9 @@ export function formatINRShort(amount: number) {
   return formatINR(amount);
 }
 
-export function compareWithBudget(total: number, budgetLabel: string): BudgetStatus | null {
-  const range = BUDGET_RANGES.find((budget) => budget.label === budgetLabel);
-  if (!range) return null;
-  if (range.max === null) return 'within';
-  return total <= range.max ? 'within' : 'above';
+export function formatINRRange(amount: number) {
+  const variance = amount < 5_00_000 ? 1_50_000 : amount > 10_00_000 ? 3_00_000 : 2_00_000;
+  return `${formatINR(Math.max(0, amount - variance))} - ${formatINR(amount + variance)}`;
 }
 
 export function parseArea(value: string, config: Pick<EstimatorConfig, 'minArea' | 'maxArea'>) {

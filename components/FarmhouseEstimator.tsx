@@ -2,29 +2,24 @@
 
 import { Playfair_Display, Inter } from 'next/font/google';
 import { FileText, Minus, Plus } from 'lucide-react';
-import type { QuoteFormData } from '@/components/QuoteForm';
 import { FARMHOUSE_ESTIMATOR } from '@/data/farmhouse-estimator-data';
-import { BUDGET_RANGES } from '@/data/budget-ranges';
 import { ESTIMATE_NOTE } from '@/data/estimator-copy';
-import { formatINR, formatINRShort } from '@/lib/estimator';
+import { formatINR, formatINRRange, formatINRShort } from '@/lib/estimator';
 import { useEstimator } from '@/lib/use-estimator';
 
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['500', '600'] });
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 type FarmhouseEstimatorProps = {
-  /** The page's existing quote-form state (read-only, except the budget). */
-  formData: QuoteFormData;
-  onBudgetChange: (budgetRange: string) => void;
   /** Opens the page's quote form (Farmhouse or Office variant from QuoteForm.tsx). */
   onScheduleCall: (configuration: string) => void;
 };
 
-export default function FarmhouseEstimator({ formData, onBudgetChange, onScheduleCall }: FarmhouseEstimatorProps) {
+export default function FarmhouseEstimator({ onScheduleCall }: FarmhouseEstimatorProps) {
   const config = FARMHOUSE_ESTIMATOR;
-  const estimator = useEstimator(config, formData);
-  const { product, area, total, budgetStatus } = estimator;
-  const configuration = `${product.name} | ${area === null ? 'Area not selected' : `${area.toLocaleString('en-IN')} sq. ft.`} | ${estimator.fitoutLevel === 'premium' ? 'Premium' : 'Standard'} fit-out | ${total === null ? 'Estimated cost unavailable' : `${formatINR(total)} estimated cost`} | Budget: ${formData.budgetRange || 'Not selected'}`;
+  const estimator = useEstimator(config);
+  const { product, area, total } = estimator;
+  const configuration = `${product.name} | ${area === null ? 'Area not selected' : `${area.toLocaleString('en-IN')} sq. ft.`} | ${estimator.fitoutLevel === 'premium' ? 'Premium' : 'Standard'} fit-out | ${total === null ? 'Estimated cost unavailable' : `${formatINR(total)} estimated cost`}`;
 
   return (
     <section id="farmhouse-estimator" className="py-24 md:py-32 bg-linear-to-b from-white via-[#faf8f4] to-white">
@@ -41,8 +36,7 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
         </div>
 
         <div className={`${inter.className} rounded-3xl border border-black/10 bg-white p-3 shadow-xl`}>
-          {/* Header: title + budget in the corner */}
-          <div className="flex flex-col gap-4 border-b border-black/10 px-3 pb-5 pt-3 sm:flex-row sm:items-end sm:justify-between sm:px-5 md:px-7 md:pt-5">
+          <div className="border-b border-black/10 px-3 pb-5 pt-3 sm:px-5 md:px-7 md:pt-5">
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#886c46]">Cost Estimator</p>
               <h3 className={`${playfair.className} mt-1 text-2xl md:text-3xl font-semibold text-black`}>
@@ -50,21 +44,6 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
               </h3>
             </div>
 
-            <label className="flex flex-col sm:items-end">
-              <span className="text-xs font-medium uppercase tracking-[0.12em] text-zinc-500">Selected Budget</span>
-              <select
-                value={formData.budgetRange}
-                onChange={(event) => onBudgetChange(event.target.value)}
-                className="mt-1.5 w-full rounded-2xl border border-[#886c46]/30 bg-[#faf8f4] px-4 py-2.5 text-sm font-semibold text-black focus:border-[#886c46] focus:outline-none sm:w-auto"
-              >
-                <option value="">Select Budget Range</option>
-                {BUDGET_RANGES.map((budget) => (
-                  <option key={budget.label} value={budget.label}>
-                    {budget.label}
-                  </option>
-                ))}
-              </select>
-            </label>
           </div>
 
           <div className="grid grid-cols-1 gap-3 pt-3 lg:grid-cols-5">
@@ -200,29 +179,11 @@ export default function FarmhouseEstimator({ formData, onBudgetChange, onSchedul
               </dl>
 
               <div className="mt-6 border-t border-white/10 pt-6">
-                <p className="text-sm text-white/60">Estimated total cost</p>
+                <p className="text-sm text-white/60">Estimated cost range</p>
                 <p className={`${playfair.className} mt-1 text-4xl font-semibold text-[#d7a661] md:text-5xl`}>
-                  {total === null ? '—' : formatINR(total)}
+                  {total === null ? '—' : formatINRRange(total)}
                 </p>
-                {total !== null && <p className="mt-1 text-sm text-white/60">≈ {formatINRShort(total)}</p>}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-white/10 px-4 py-3 text-sm">
-                {!formData.budgetRange ? (
-                  <span className="text-white/60">Select a budget range to compare.</span>
-                ) : budgetStatus === null ? (
-                  <span className="text-white/60">Enter a valid area to compare with your budget.</span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    <span
-                      className={`h-2 w-2 shrink-0 rounded-full ${budgetStatus === 'within' ? 'bg-emerald-400' : 'bg-red-400'}`}
-                    />
-                    <span>
-                      {budgetStatus === 'within' ? 'Within' : 'Above'} your budget of{' '}
-                      <span className="font-semibold">{formData.budgetRange}</span>
-                    </span>
-                  </span>
-                )}
+                {total !== null && <p className="mt-1 text-sm text-white/60">Calculated estimate: {formatINRShort(total)}</p>}
               </div>
 
               <p className="mt-5 text-xs leading-relaxed text-white/50">{ESTIMATE_NOTE}</p>

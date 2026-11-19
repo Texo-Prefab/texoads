@@ -1,9 +1,4 @@
-/**
- * Budget ranges offered by the quote forms.
- * `label` must match the <option> text used by the forms exactly,
- * because the estimators read the customer's selection from that shared form state.
- * `max: null` means the range is open-ended.
- */
+/** Budget ranges offered by the quote forms. `max: null` means the range is open-ended. */
 export type BudgetRange = {
   label: string;
   min: number;

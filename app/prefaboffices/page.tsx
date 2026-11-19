@@ -11,7 +11,6 @@ import OfficePortfolio from '@/components/OfficePortfolio';
 import OfficeProducts from '@/components/OfficeProducts';
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import ExtendedProducts from '@/components/ExtendedProducts';
 import { OfficeQuoteForm, FreeCallForm, type QuoteFormData } from '@/components/QuoteForm';
 import Process from '@/components/Process';
 import OfficeEstimator from '@/components/OfficeEstimator';
@@ -709,8 +708,6 @@ const processSteps = [
 
 {/* <ExtendedProducts onQuoteClick={openQuoteModal} /> */}
     <OfficeEstimator
-      formData={heroFormData}
-      onBudgetChange={(budgetRange) => setHeroFormData({ ...heroFormData, budgetRange })}
       onScheduleCall={openFreeCallModal}
     />
     <OfficePortfolio />
